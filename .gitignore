@@ -1,0 +1,13 @@
+# Ignore runtime database files
+*.db
+*.db-wal
+*.db-shm
+
+# VSCode stuff
+.vscode/
+
+# Python / Node / Dev envs (optional)
+.env
+__pycache__/
+node_modules/
+dist/
