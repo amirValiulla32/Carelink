@@ -7,3 +7,10 @@ for creating the local db for api/testing:
 sqlcipher carelink_enc.db
 PRAGMA key = 'dev-pin-7864';
 .read schema.sql
+
+
+to run frontend locally:
+cd frontend
+pnpm install
+
+pnpm run dev 
