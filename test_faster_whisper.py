@@ -17,7 +17,7 @@ def transcribe_with_cpp(audio_path: str, model_path: str = None) -> str:
 
     # Path to whisper-cli.exe in the Release folder
     cli = os.path.join(
-        project_root, "whisper.cpp", "build", "bin", "Release", "whisper-cli.exe"
+        project_root, "whisper.cpp", "whisper-cli.exe"
     )
     cli = os.path.abspath(cli)
 
@@ -26,7 +26,8 @@ def transcribe_with_cpp(audio_path: str, model_path: str = None) -> str:
         model = os.path.abspath(model_path)
     else:
         model = os.path.abspath(
-            os.path.join(project_root, "whisper.cpp", "models", "ggml-base.en.bin")
+            os.path.join(project_root, "whisper.cpp",
+                         "models", "ggml-base.en.bin")
         )
 
     audio = os.path.abspath(audio_path)
@@ -56,12 +57,14 @@ def transcribe_with_cpp(audio_path: str, model_path: str = None) -> str:
     print("Whisper stderr:\n", result.stderr)
 
     if result.returncode != 0:
-        raise RuntimeError(f"Whisper CLI failed (exit code {result.returncode})")
+        raise RuntimeError(
+            f"Whisper CLI failed (exit code {result.returncode})")
 
     # Read and return the transcript
     out_txt = os.path.join(os.getcwd(), "output.txt")
     if not os.path.exists(out_txt):
-        raise FileNotFoundError("Expected output.txt not found after transcription.")
+        raise FileNotFoundError(
+            "Expected output.txt not found after transcription.")
 
     with open(out_txt, "r", encoding="utf-8") as f:
         return f.read()
