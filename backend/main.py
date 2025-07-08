@@ -61,6 +61,25 @@ async def health_check():
         raise HTTPException(
             status_code=503, detail=f"Database connection failed: {str(e)}")
 
+
+@app.get("/health/whisper")
+async def whisper_health_check():
+    """Health check endpoint for whisper.cpp."""
+    try:
+        from whisper_utils import ensure_whisper_setup
+        binary_path, model_path = ensure_whisper_setup()
+
+        return {
+            "status": "healthy",
+            "whisper": "ready",
+            "binary_path": binary_path,
+            "model_path": model_path
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=503, detail=f"Whisper setup failed: {str(e)}")
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
