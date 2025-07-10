@@ -30,19 +30,19 @@ def install_dependencies():
     try:
         subprocess.run([sys.executable, "-m", "pip", "install", "-r", "../requirements.txt"],
                        check=True, capture_output=True)
-        print("✅ Dependencies installed successfully")
+        print(" Dependencies installed successfully")
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to install dependencies: {e}")
+        print(f" Failed to install dependencies: {e}")
         return False
     return True
 
 
 def start_server():
     """Start the FastAPI server."""
-    print("🏥 Starting Carelink Backend Server...")
-    print("📍 API will be available at: http://localhost:8000")
-    print("📖 API docs will be available at: http://localhost:8000/docs")
-    print("🔧 Health check: http://localhost:8000/health")
+    print(" Starting Carelink Backend Server...")
+    print(" API will be available at: http://localhost:8000")
+    print(" API docs will be available at: http://localhost:8000/docs")
+    print(" Health check: http://localhost:8000/health")
     print()
 
     try:
