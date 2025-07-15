@@ -29,6 +29,41 @@ class StoreSessionRequest(BaseModel):
     notes: Optional[str] = None
     timestamp: int = Field(..., description="End timestamp in milliseconds")
 
+
+# Prompt Chaining Request/Response Models
+
+
+class ExtractRequest(BaseModel):
+    transcript: str
+
+
+class ExtractResponse(BaseModel):
+    data: Dict[str, Any]
+
+
+class AnalyzeRequest(BaseModel):
+    extracted_data: Dict[str, Any]
+
+
+class AnalyzeResponse(BaseModel):
+    data: Dict[str, Any]
+
+
+class ChainSummarizeRequest(BaseModel):
+    session_id: str
+    extracted_data: Dict[str, Any]
+    analyzed_data: Dict[str, Any]
+
+
+class SummarizeResponse(BaseModel):
+    summary: str
+    tone: str
+    repeated_questions: List[str]
+    key_moments: List[str]
+    tags: List[str]
+    agitation_score: float
+    mood_label: str
+
 # Response Models
 
 
@@ -38,13 +73,6 @@ class StartSessionResponse(BaseModel):
 
 class TranscribeResponse(BaseModel):
     transcript: str
-
-
-class SummarizeResponse(BaseModel):
-    summary: str
-    repetition_json: List[Dict[str, Any]]
-    agitation_score: float
-    mood_label: str
 
 
 class AudioChunk(BaseModel):
