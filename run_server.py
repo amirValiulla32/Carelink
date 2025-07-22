@@ -20,7 +20,7 @@ def main():
         os.chdir(backend_dir)
 
     # Run the server
-    os.system("python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload")
+    os.system("python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload")
 
 
 if __name__ == "__main__":

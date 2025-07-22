@@ -1,5 +1,5 @@
 import database
-from routes import session, transcribe, summarize
+from routes import session, transcribe, summarize, medication_chain, freeform_chain, sundowning_chain
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -40,6 +40,11 @@ app.add_middleware(
 app.include_router(session.router)
 app.include_router(transcribe.router)
 app.include_router(summarize.router)
+
+# Include prompt chaining routers
+app.include_router(medication_chain.router)
+app.include_router(freeform_chain.router)
+app.include_router(sundowning_chain.router)
 
 
 @app.get("/")

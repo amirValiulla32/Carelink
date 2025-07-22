@@ -17,7 +17,11 @@ def transcribe_audio(audio_path: str, model_path: str = None) -> str:
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
     # 1) Locate the CLI binary
-    cli = os.path.join(project_root, "whisper.cpp", "build", "bin", "Release", "whisper-cli.exe")
+    import platform
+    if platform.system() == "Windows":
+        cli = os.path.join(project_root, "whisper.cpp", "build", "bin", "Release", "whisper-cli.exe")
+    else:
+        cli = os.path.join(project_root, "whisper.cpp", "build", "main")
     cli = os.path.abspath(cli)
 
     # 2) Locate the model file (default if not overridden)

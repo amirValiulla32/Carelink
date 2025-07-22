@@ -1,0 +1,4 @@
+{
+  "session_type": "freeform_analyze",
+  "prompt_template": "You are analyzing extracted data from a freeform conversation session. Analyze the following information:\n\nExtracted Data:\n{extracted_data}\n\nPlease analyze:\n1. OVERALL TONE: What is the patient's overall mood/tone during the conversation?\n2. AGITATION LEVEL: Rate agitation on scale 0.0-10.0 (0=calm, 10=very agitated)\n3. COGNITIVE FUNCTION: How well is the patient's cognitive function?\n4. ENGAGEMENT QUALITY: How well did the patient engage in conversation?\n5. CONVERSATION SUCCESS: What made this conversation successful or challenging?\n\nRespond in this exact JSON format:\n{\n  \"tone\": \"content\",\n  \"agitation_score\": 1.5,\n  \"cognitive_function\": \"good\",\n  \"engagement_quality\": \"high\",\n  \"conversation_success\": [\"Patient was responsive\", \"Good topic flow\"],\n  \"challenges\": [\"Some time confusion\", \"Repeated questions\"]\n}"
+} 

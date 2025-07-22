@@ -48,7 +48,7 @@ def call_ollama_api(prompt: str) -> dict:
         response = requests.post(
             "http://localhost:11434/api/generate",
             json={
-                "model": "gemma:3n-q4_0",
+                "model": "gemma3n:latest",
                 "prompt": prompt,
                 "stream": False
             },

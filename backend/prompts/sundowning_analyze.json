@@ -1,0 +1,4 @@
+{
+  "session_type": "sundowning_analyze",
+  "prompt_template": "You are analyzing extracted data from a sundowning episode. Analyze the following information:\n\nExtracted Data:\n{extracted_data}\n\nPlease analyze:\n1. OVERALL TONE: What is the patient's overall mood/tone during the episode?\n2. AGITATION LEVEL: Rate agitation on scale 0.0-10.0 (0=calm, 10=very agitated)\n3. EPISODE SEVERITY: How severe was this sundowning episode?\n4. TRIGGER PATTERNS: What patterns do you see in the triggers?\n5. MANAGEMENT SUCCESS: What strategies worked or didn't work?\n\nRespond in this exact JSON format:\n{\n  \"tone\": \"anxious\",\n  \"agitation_score\": 6.5,\n  \"episode_severity\": \"moderate\",\n  \"trigger_patterns\": [\"Evening time\", \"Routine disruption\"],\n  \"management_success\": [\"Reassurance helped\", \"Familiar environment calmed\"],\n  \"challenges\": [\"Time confusion\", \"Restlessness\"]\n}"
+} 
