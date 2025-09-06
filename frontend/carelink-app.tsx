@@ -32,7 +32,7 @@ type SessionType = "medication" | "sundowning" | "freeform" | null
 // Audio Waveform Component
 const AudioWaveform = ({ isListening, isRecording }: { isListening: boolean; isRecording: boolean }) => {
   const [audioData, setAudioData] = useState<number[]>(new Array(12).fill(0))
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     if (isListening) {
@@ -97,6 +97,15 @@ export default function Component() {
   const [currentAffirmation, setCurrentAffirmation] = useState(0)
   const [sessions, setSessions] = useState<SessionListItem[]>([])
   const [isLoadingSessions, setIsLoadingSessions] = useState(true)
+  
+  // Real audio recording state
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null)
+  const [audioChunks, setAudioChunks] = useState<Blob[]>([])
+  const [recordingTime, setRecordingTime] = useState(0)
+  const [recordingStartTime, setRecordingStartTime] = useState<number | null>(null)
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
+  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null)
+  const [isStartingRecording, setIsStartingRecording] = useState(false)
 
   const affirmations = [
     "You are doing sacred work.",
@@ -168,8 +177,8 @@ export default function Component() {
     })
 
     return [
-      {
-        date: "Today",
+    {
+      date: "Today",
         fullDate: today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
         sessions: todaySessions.map(session => ({
           id: session.session_id,
@@ -180,9 +189,9 @@ export default function Component() {
           color: getSessionColor(session.session_type),
           borderColor: getSessionBorderColor(session.session_type),
         }))
-      },
-      {
-        date: "Yesterday", 
+    },
+    {
+      date: "Yesterday",
         fullDate: yesterday.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
         sessions: yesterdaySessions.map(session => ({
           id: session.session_id,
@@ -296,6 +305,79 @@ export default function Component() {
     tags: ["recorded", "pending analysis"],
   }
 
+  // Real audio recording functions
+  const startRecording = async () => {
+    console.log('startRecording function called')
+    try {
+      console.log('Requesting microphone access...')
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          sampleRate: 44100
+        } 
+      })
+      console.log('Microphone access granted, stream:', stream)
+      
+      const recorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm;codecs=opus'
+      })
+      console.log('MediaRecorder created:', recorder)
+      
+      const chunks: Blob[] = []
+      
+      recorder.ondataavailable = (event) => {
+        console.log('Data available, size:', event.data.size)
+        if (event.data.size > 0) {
+          chunks.push(event.data)
+        }
+      }
+      
+      recorder.onstop = () => {
+        console.log('Recording stopped, chunks:', chunks.length)
+        const audioBlob = new Blob(chunks, { type: 'audio/webm' })
+        setAudioBlob(audioBlob)
+        setAudioChunks(chunks)
+        
+        // Stop all tracks to release microphone
+        stream.getTracks().forEach(track => track.stop())
+      }
+      
+      console.log('Starting MediaRecorder...')
+      recorder.start(100) // Collect data every 100ms
+      setMediaRecorder(recorder)
+      setAudioChunks([])
+      setRecordingStartTime(Date.now())
+      setRecordingTime(0)
+      
+      // Start recording timer
+      const startTime = Date.now()
+      const timer = setInterval(() => {
+        setRecordingTime(Math.floor((Date.now() - startTime) / 1000))
+      }, 1000)
+      
+      // Store timer reference for cleanup
+      ;(recorder as any).timer = timer
+      console.log('Recording started successfully')
+      
+    } catch (error) {
+      console.error('Error starting recording:', error)
+      alert('Could not access microphone. Please check permissions.')
+    }
+  }
+  
+  const stopRecording = () => {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      mediaRecorder.stop()
+      setIsRecording(false)
+      
+      // Clear timer
+      if ((mediaRecorder as any).timer) {
+        clearInterval((mediaRecorder as any).timer)
+      }
+    }
+  }
+
   // Navigation functions
   const startNewSession = () => {
     setCurrentScreen("session-type")
@@ -328,70 +410,36 @@ export default function Component() {
   }
 
   const handleStartSession = async () => {
-    if (!selectedSessionType) return
+    console.log('handleStartSession called, selectedSessionType:', selectedSessionType)
+    if (!selectedSessionType) {
+      console.log('No session type selected, returning')
+      return
+    }
 
+    setIsStartingRecording(true)
+    
     try {
-      // Start a new session via API
+      // Start recording immediately for better UX
+      console.log('Starting recording immediately...')
+      setIsListening(true)
+      setIsRecording(true)
+      await startRecording()
+    } finally {
+      setIsStartingRecording(false)
+    }
+
+    // Try to start session in background (don't wait for it)
+    try {
+      console.log('Starting session via API in background...')
       const response = await api.startSession({
         session_type: selectedSessionType,
         timestamp: Date.now()
       })
-
       console.log('Session started:', response.session_id)
-      
-      // Start recording state immediately
-      setIsListening(true)
-      setIsRecording(true)
-
-      // Use requestAnimationFrame for smoother UI updates
-      const startTime = Date.now()
-      const recordingDuration = 3000 // 3 seconds
-      const processingDuration = 1000 // 1 second
-
-      const updateRecording = () => {
-        const elapsed = Date.now() - startTime
-        
-        if (elapsed < recordingDuration) {
-          // Still recording
-          requestAnimationFrame(updateRecording)
-        } else if (elapsed < recordingDuration + processingDuration) {
-          // Processing phase
-          setIsRecording(false)
-          requestAnimationFrame(updateRecording)
-        } else {
-          // Done - go to summary
-          setIsListening(false)
-          setCurrentScreen("session-summary")
-        }
-      }
-
-      requestAnimationFrame(updateRecording)
-      
+      setCurrentSessionId(response.session_id)
     } catch (error) {
-      console.error('Failed to start session:', error)
-      // Still proceed with UI flow even if API fails
-      setIsListening(true)
-      setIsRecording(true)
-      
-      const startTime = Date.now()
-      const recordingDuration = 3000
-      const processingDuration = 1000
-
-      const updateRecording = () => {
-        const elapsed = Date.now() - startTime
-        
-        if (elapsed < recordingDuration) {
-          requestAnimationFrame(updateRecording)
-        } else if (elapsed < recordingDuration + processingDuration) {
-          setIsRecording(false)
-          requestAnimationFrame(updateRecording)
-        } else {
-          setIsListening(false)
-          setCurrentScreen("session-summary")
-        }
-      }
-
-      requestAnimationFrame(updateRecording)
+      console.error('Failed to start session (continuing with recording):', error)
+      // Recording continues even if API fails
     }
   }
 
@@ -422,6 +470,15 @@ export default function Component() {
     setReflectionText("")
   }
 
+  const handleStopRecording = () => {
+    stopRecording()
+    // Go to summary after a brief delay to show processing
+    setTimeout(() => {
+      setIsListening(false)
+      setCurrentScreen("session-summary")
+    }, 1000)
+  }
+
   // Start listening animation when entering confirm screen
   useEffect(() => {
     if (currentScreen === "session-confirm") {
@@ -433,6 +490,25 @@ export default function Component() {
       setIsRecording(false)
     }
   }, [currentScreen])
+
+  // Auto-stop recording at 30 seconds
+  useEffect(() => {
+    if (isRecording && recordingTime >= 30) {
+      handleStopRecording()
+    }
+  }, [recordingTime, isRecording])
+
+  // Cleanup recording when component unmounts or screen changes
+  useEffect(() => {
+    return () => {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop()
+      }
+      if ((mediaRecorder as any)?.timer) {
+        clearInterval((mediaRecorder as any).timer)
+      }
+    }
+  }, [mediaRecorder])
 
   return (
     <TooltipProvider>
@@ -798,6 +874,17 @@ export default function Component() {
                         "I'm listening—just speak naturally, I'll capture the important parts."}
                       {isRecording && "Recording your words with care..."}
                     </p>
+                    
+                    {/* Recording Timer */}
+                    {isRecording && (
+                      <div className="mt-4 flex items-center justify-center gap-2">
+                        <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                        <span className="text-lg font-mono text-gray-600">
+                          {Math.floor(recordingTime / 60)}:{(recordingTime % 60).toString().padStart(2, '0')}
+                        </span>
+                      </div>
+                    )}
+                    
                   </div>
 
                   {/* Selected Type Confirmation */}
@@ -815,19 +902,38 @@ export default function Component() {
                     </div>
                   </div>
 
-                  {/* Start Button */}
+                  {/* Start/Stop Button */}
                   <Button
                     size="lg"
-                    onClick={handleStartSession}
-                    disabled={isRecording}
+                    onClick={() => {
+                      console.log('Button clicked, isRecording:', isRecording, 'selectedSessionType:', selectedSessionType)
+                      if (isRecording) {
+                        handleStopRecording()
+                      } else {
+                        handleStartSession()
+                      }
+                    }}
+                    disabled={isRecording && recordingTime >= 30 || isStartingRecording}
                     className="w-full h-16 text-lg font-medium rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
                     style={{
-                      backgroundColor: isRecording ? "#8BAAAD" : "#546A7B",
+                      backgroundColor: isRecording ? "#DC2626" : isStartingRecording ? "#8BAAAD" : "#546A7B",
                       color: "white",
                     }}
                   >
-                    {isRecording ? "Recording..." : "Begin Listening"}
+                    {isStartingRecording 
+                      ? "Starting Recording..."
+                      : isRecording 
+                        ? (recordingTime >= 30 ? "Max Time Reached" : "Stop Recording") 
+                        : "Begin Listening"
+                    }
                   </Button>
+                  
+                  {/* Recording Limit Notice */}
+                  {isRecording && (
+                    <p className="text-xs text-gray-400 mt-2 text-center">
+                      Maximum recording time: 30 seconds
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             </div>
@@ -846,12 +952,17 @@ export default function Component() {
                       Memory captured. Let's look at what matters. ✨
                     </h1>
                     <p className="text-gray-500 font-light">
-                      {sessionData.timestamp} • {sessionData.duration}
+                      {sessionData.timestamp} • {recordingTime > 0 ? `${recordingTime}s recorded` : sessionData.duration}
                     </p>
                   </div>
                   <div className="flex items-center gap-2 text-green-600">
                     <Shield className="w-4 h-4" />
-                    <span className="text-sm font-medium">Saved locally. This moment is yours, and only yours.</span>
+                    <span className="text-sm font-medium">
+                      {audioBlob 
+                        ? `Audio recorded (${Math.round(audioBlob.size / 1024)}KB). This moment is yours, and only yours.`
+                        : "Saved locally. This moment is yours, and only yours."
+                      }
+                    </span>
                   </div>
                 </div>
               </div>
@@ -920,16 +1031,16 @@ export default function Component() {
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
                                 <span className="text-sm font-medium text-gray-500">{event.time}</span>
-                                {event.repetition && (
+                                {(event as any).repetition && (
                                   <Tooltip>
                                     <TooltipTrigger>
                                       <Badge variant="secondary" className="text-xs px-2 py-0.5">
                                         <RotateCcw className="w-3 h-3 mr-1" />
-                                        {event.repetition}x
+                                        {(event as any).repetition}x
                                       </Badge>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                      <p>This topic came up {event.repetition} times</p>
+                                      <p>This topic came up {(event as any).repetition} times</p>
                                     </TooltipContent>
                                   </Tooltip>
                                 )}
@@ -1040,7 +1151,7 @@ export default function Component() {
                   Re-record
                 </Button>
 
-                {/* Save Button */}
+              {/* Save Button */}
                 <Button
                   size="lg"
                   onClick={handleSaveAndContinue}
