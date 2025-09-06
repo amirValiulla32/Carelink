@@ -273,30 +273,27 @@ export default function Component() {
     },
   ]
 
+  // Generate dynamic session data based on selected session type
   const sessionData = {
-    type: "Medication",
-    duration: "4 minutes",
-    timestamp: "Today at 9:00 AM",
-    mood: "Calm",
+    type: selectedSessionType ? selectedSessionType.charAt(0).toUpperCase() + selectedSessionType.slice(1) : "Session",
+    duration: "4 minutes", // This would come from actual recording duration
+    timestamp: `Today at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`,
+    mood: "Calm", // This would come from AI analysis
     moodColor: "#C9E4DE",
     keyEvents: [
       {
-        time: "09:00",
-        event: "Morning medications given",
-        icon: Pill,
-        details: "All three pills taken without resistance ✨",
-      },
-      {
-        time: "09:02",
-        event: "Asked about breakfast",
-        icon: Coffee,
-        details: "Showed interest in having oatmeal 🥣",
-        repetition: 2,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }),
+        event: `${selectedSessionType} session completed`,
+        icon: selectedSessionType === 'medication' ? Pill : selectedSessionType === 'sundowning' ? Sunset : FileText,
+        details: "Session recorded successfully",
       },
     ],
-    aiSummary:
-      "Today's medication session went beautifully. Mom took her morning pills without any hesitation and seemed alert and cooperative. She asked about breakfast a couple of times, which shows wonderful appetite awareness. Her tone remained calm throughout our interaction, and she even smiled when I mentioned her favorite oatmeal. 💝",
-    tags: ["cooperative", "alert", "good appetite"],
+    aiSummary: selectedSessionType === 'medication' 
+      ? "This medication session has been recorded. The AI analysis will be available once the session is processed."
+      : selectedSessionType === 'sundowning'
+      ? "This sundowning session has been recorded. The AI analysis will be available once the session is processed."
+      : "This conversation has been recorded. The AI analysis will be available once the session is processed.",
+    tags: ["recorded", "pending analysis"],
   }
 
   // Navigation functions
@@ -342,29 +339,59 @@ export default function Component() {
 
       console.log('Session started:', response.session_id)
       
+      // Start recording state immediately
       setIsListening(true)
       setIsRecording(true)
 
-      // Simulate recording for 3 seconds, then processing
-      setTimeout(() => {
-        setIsRecording(false)
-        setTimeout(() => {
+      // Use requestAnimationFrame for smoother UI updates
+      const startTime = Date.now()
+      const recordingDuration = 3000 // 3 seconds
+      const processingDuration = 1000 // 1 second
+
+      const updateRecording = () => {
+        const elapsed = Date.now() - startTime
+        
+        if (elapsed < recordingDuration) {
+          // Still recording
+          requestAnimationFrame(updateRecording)
+        } else if (elapsed < recordingDuration + processingDuration) {
+          // Processing phase
+          setIsRecording(false)
+          requestAnimationFrame(updateRecording)
+        } else {
+          // Done - go to summary
           setIsListening(false)
           setCurrentScreen("session-summary")
-        }, 1000)
-      }, 3000)
+        }
+      }
+
+      requestAnimationFrame(updateRecording)
+      
     } catch (error) {
       console.error('Failed to start session:', error)
       // Still proceed with UI flow even if API fails
       setIsListening(true)
       setIsRecording(true)
-      setTimeout(() => {
-        setIsRecording(false)
-        setTimeout(() => {
+      
+      const startTime = Date.now()
+      const recordingDuration = 3000
+      const processingDuration = 1000
+
+      const updateRecording = () => {
+        const elapsed = Date.now() - startTime
+        
+        if (elapsed < recordingDuration) {
+          requestAnimationFrame(updateRecording)
+        } else if (elapsed < recordingDuration + processingDuration) {
+          setIsRecording(false)
+          requestAnimationFrame(updateRecording)
+        } else {
           setIsListening(false)
           setCurrentScreen("session-summary")
-        }, 1000)
-      }, 3000)
+        }
+      }
+
+      requestAnimationFrame(updateRecording)
     }
   }
 
@@ -380,6 +407,19 @@ export default function Component() {
     } catch (error) {
       console.error('Failed to refresh sessions:', error)
     }
+  }
+
+  const handleCancelSession = () => {
+    // Go back to home without saving
+    setCurrentScreen("home")
+    setSelectedSessionType(null)
+    setReflectionText("")
+  }
+
+  const handleRerecord = () => {
+    // Go back to session confirmation to re-record
+    setCurrentScreen("session-confirm")
+    setReflectionText("")
   }
 
   // Start listening animation when entering confirm screen
@@ -976,8 +1016,31 @@ export default function Component() {
                 </CardContent>
               </Card>
 
-              {/* Save Button */}
-              <div className="flex justify-center mt-8">
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                {/* Cancel Session Button */}
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={handleCancelSession}
+                  className="px-6 py-3 rounded-full border-2 hover:bg-red-50 hover:border-red-200 transition-all duration-200"
+                >
+                  <X className="w-4 h-4 mr-2" />
+                  Cancel Session
+                </Button>
+
+                {/* Re-record Button */}
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={handleRerecord}
+                  className="px-6 py-3 rounded-full border-2 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  Re-record
+                </Button>
+
+                {/* Save Button */}
                 <Button
                   size="lg"
                   onClick={handleSaveAndContinue}
