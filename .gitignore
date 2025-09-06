@@ -39,3 +39,6 @@ next-env.d.ts# Ignore runtime database files
 __pycache__/
 node_modules/
 dist/
+
+# Whisper.cpp - don't track the entire repository
+whisper/whisper.cpp/

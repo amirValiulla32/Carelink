@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { api, SessionListItem } from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -94,6 +95,8 @@ export default function Component() {
   const [reflectionText, setReflectionText] = useState("")
   const [showWeeklyHighlights, setShowWeeklyHighlights] = useState(false)
   const [currentAffirmation, setCurrentAffirmation] = useState(0)
+  const [sessions, setSessions] = useState<SessionListItem[]>([])
+  const [isLoadingSessions, setIsLoadingSessions] = useState(true)
 
   const affirmations = [
     "You are doing sacred work.",
@@ -111,6 +114,24 @@ export default function Component() {
     return () => clearInterval(interval)
   }, [])
 
+  // Load sessions from API
+  useEffect(() => {
+    const loadSessions = async () => {
+      try {
+        setIsLoadingSessions(true)
+        const response = await api.getSessions()
+        setSessions(response.sessions)
+      } catch (error) {
+        console.error('Failed to load sessions:', error)
+        // Keep empty sessions array on error
+      } finally {
+        setIsLoadingSessions(false)
+      }
+    }
+
+    loadSessions()
+  }, [])
+
   // Show weekly highlights after 3 seconds on home screen
   useEffect(() => {
     if (currentScreen === "home") {
@@ -121,105 +142,106 @@ export default function Component() {
     }
   }, [currentScreen])
 
-  // Sample sessions data with color coding
+  // Process sessions data for display
   const today = new Date()
   const yesterday = new Date(today)
   yesterday.setDate(yesterday.getDate() - 1)
   const dayBefore = new Date(today)
   dayBefore.setDate(dayBefore.getDate() - 2)
 
-  const sessionsByDay = [
-    {
-      date: "Today",
-      fullDate: today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
-      sessions: [
-        {
-          id: 1,
-          type: "Check-In",
-          time: "2:30 PM",
-          summary: "Good spirits today. Enjoyed afternoon tea together. 🫖",
-          icon: "💬",
-          color: "#E8F5E8", // sage
-          borderColor: "#B8D4B8",
-        },
-        {
-          id: 2,
-          type: "Medication",
-          time: "9:00 AM",
-          summary: "Morning pills taken. No resistance today. ✨",
-          icon: "💊",
-          color: "#F0E6FF", // lavender
-          borderColor: "#D4C5F9",
-        },
-      ],
-    },
-    {
-      date: "Yesterday",
-      fullDate: yesterday.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
-      sessions: [
-        {
-          id: 3,
-          type: "Sundowning",
-          time: "6:45 PM",
-          summary: "Brief disorientation. Calmed with familiar music. 🎵",
-          icon: "🌅",
-          color: "#FFE8D6", // peach
-          borderColor: "#FFD4B3",
-        },
-        {
-          id: 4,
-          type: "Meal Support",
-          time: "12:30 PM",
-          summary: "Lunch went well. Ate most of the sandwich. 🥪",
-          icon: "🍽️",
-          color: "#FFF4E6", // warm cream
-          borderColor: "#FFE4B3",
-        },
-        {
-          id: 5,
-          type: "Check-In",
-          time: "10:15 AM",
-          summary: "Quiet morning. Looked through photo albums. 📸",
-          icon: "💬",
-          color: "#E8F5E8",
-          borderColor: "#B8D4B8",
-        },
-      ],
-    },
-    {
-      date: dayBefore.toLocaleDateString('en-US', { month: 'long', day: 'numeric' }),
-      fullDate: dayBefore.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
-      sessions: [
-        {
-          id: 6,
-          type: "Evening Routine",
-          time: "8:00 PM",
-          summary: "Bedtime routine smooth. Fell asleep quickly. 😴",
-          icon: "🌙",
-          color: "#E6F3FF", // soft blue
-          borderColor: "#B3D9FF",
-        },
-        {
-          id: 7,
-          type: "Wellness Check",
-          time: "3:00 PM",
-          summary: "Vitals good. Mood seems brighter today. 💖",
-          icon: "💗",
-          color: "#FFE6F0", // soft pink
-          borderColor: "#FFB3D9",
-        },
-        {
-          id: 8,
-          type: "Medication",
-          time: "9:00 AM",
-          summary: "Pills given. Patient calm and cooperative. 🕊️",
-          icon: "💊",
-          color: "#F0E6FF",
-          borderColor: "#D4C5F9",
-        },
-      ],
-    },
-  ]
+  // Group sessions by day
+  const groupSessionsByDay = (sessions: SessionListItem[]) => {
+    const todaySessions = sessions.filter(session => {
+      const sessionDate = new Date(session.start_ts)
+      return sessionDate.toDateString() === today.toDateString()
+    })
+
+    const yesterdaySessions = sessions.filter(session => {
+      const sessionDate = new Date(session.start_ts)
+      return sessionDate.toDateString() === yesterday.toDateString()
+    })
+
+    const olderSessions = sessions.filter(session => {
+      const sessionDate = new Date(session.start_ts)
+      return sessionDate.toDateString() !== today.toDateString() && 
+             sessionDate.toDateString() !== yesterday.toDateString()
+    })
+
+    return [
+      {
+        date: "Today",
+        fullDate: today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+        sessions: todaySessions.map(session => ({
+          id: session.session_id,
+          type: session.session_type,
+          time: new Date(session.start_ts).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
+          summary: session.summary_text || "No summary available",
+          icon: getSessionIcon(session.session_type),
+          color: getSessionColor(session.session_type),
+          borderColor: getSessionBorderColor(session.session_type),
+        }))
+      },
+      {
+        date: "Yesterday", 
+        fullDate: yesterday.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+        sessions: yesterdaySessions.map(session => ({
+          id: session.session_id,
+          type: session.session_type,
+          time: new Date(session.start_ts).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
+          summary: session.summary_text || "No summary available",
+          icon: getSessionIcon(session.session_type),
+          color: getSessionColor(session.session_type),
+          borderColor: getSessionBorderColor(session.session_type),
+        }))
+      },
+      ...olderSessions.slice(0, 5).map(session => ({
+        date: new Date(session.start_ts).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }),
+        fullDate: new Date(session.start_ts).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+        sessions: [{
+          id: session.session_id,
+          type: session.session_type,
+          time: new Date(session.start_ts).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
+          summary: session.summary_text || "No summary available",
+          icon: getSessionIcon(session.session_type),
+          color: getSessionColor(session.session_type),
+          borderColor: getSessionBorderColor(session.session_type),
+        }]
+      }))
+    ]
+  }
+
+  const sessionsByDay = groupSessionsByDay(sessions)
+
+  // Helper functions for session styling
+  const getSessionIcon = (sessionType: string) => {
+    switch (sessionType.toLowerCase()) {
+      case 'medication': return '💊'
+      case 'sundowning': return '🌅'
+      case 'freeform': return '💬'
+      default: return '📝'
+    }
+  }
+
+  const getSessionColor = (sessionType: string) => {
+    switch (sessionType.toLowerCase()) {
+      case 'medication': return '#F0E6FF' // lavender
+      case 'sundowning': return '#FFE8D6' // peach
+      case 'freeform': return '#E8F5E8' // sage
+      default: return '#E6F3FF' // soft blue
+    }
+  }
+
+  const getSessionBorderColor = (sessionType: string) => {
+    switch (sessionType.toLowerCase()) {
+      case 'medication': return '#D4C5F9'
+      case 'sundowning': return '#FFD4B3'
+      case 'freeform': return '#B8D4B8'
+      default: return '#B3D9FF'
+    }
+  }
+
+  // Use real sessions data, fallback to empty array if loading or no data
+  const displaySessionsByDay = isLoadingSessions ? [] : sessionsByDay
 
   const sessionTypes = [
     {
@@ -308,24 +330,56 @@ export default function Component() {
     }
   }
 
-  const handleStartSession = () => {
-    setIsListening(true)
-    setIsRecording(true)
+  const handleStartSession = async () => {
+    if (!selectedSessionType) return
 
-    // Simulate recording for 3 seconds, then processing
-    setTimeout(() => {
-      setIsRecording(false)
+    try {
+      // Start a new session via API
+      const response = await api.startSession({
+        session_type: selectedSessionType,
+        timestamp: Date.now()
+      })
+
+      console.log('Session started:', response.session_id)
+      
+      setIsListening(true)
+      setIsRecording(true)
+
+      // Simulate recording for 3 seconds, then processing
       setTimeout(() => {
-        setIsListening(false)
-        setCurrentScreen("session-summary")
-      }, 1000)
-    }, 3000)
+        setIsRecording(false)
+        setTimeout(() => {
+          setIsListening(false)
+          setCurrentScreen("session-summary")
+        }, 1000)
+      }, 3000)
+    } catch (error) {
+      console.error('Failed to start session:', error)
+      // Still proceed with UI flow even if API fails
+      setIsListening(true)
+      setIsRecording(true)
+      setTimeout(() => {
+        setIsRecording(false)
+        setTimeout(() => {
+          setIsListening(false)
+          setCurrentScreen("session-summary")
+        }, 1000)
+      }, 3000)
+    }
   }
 
-  const handleSaveAndContinue = () => {
+  const handleSaveAndContinue = async () => {
     setCurrentScreen("home")
     setSelectedSessionType(null)
     setReflectionText("")
+    
+    // Refresh sessions list
+    try {
+      const response = await api.getSessions()
+      setSessions(response.sessions)
+    } catch (error) {
+      console.error('Failed to refresh sessions:', error)
+    }
   }
 
   // Start listening animation when entering confirm screen
@@ -437,7 +491,22 @@ export default function Component() {
 
                 {/* Timeline */}
                 <div className="space-y-12 relative">
-                  {sessionsByDay.map((day, dayIndex) => (
+                  {isLoadingSessions ? (
+                    <div className="pl-16 py-8">
+                      <div className="text-center text-gray-500">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400 mx-auto mb-4"></div>
+                        <p>Loading sessions...</p>
+                      </div>
+                    </div>
+                  ) : displaySessionsByDay.length === 0 ? (
+                    <div className="pl-16 py-8">
+                      <div className="text-center text-gray-500">
+                        <p className="text-lg mb-2">No sessions yet</p>
+                        <p className="text-sm">Start your first care session to see it here</p>
+                      </div>
+                    </div>
+                  ) : (
+                    displaySessionsByDay.map((day, dayIndex) => (
                     <div key={day.date} className="space-y-6">
                       {/* Day Header */}
                       <div className="sticky top-0 z-10 py-3 pl-16" style={{ backgroundColor: "#FDFCF9" }}>
@@ -451,7 +520,14 @@ export default function Component() {
 
                       {/* Sessions */}
                       <div className="space-y-6">
-                        {day.sessions.map((session, sessionIndex) => (
+                        {day.sessions.length === 0 ? (
+                          <div className="pl-16 py-4">
+                            <p className="text-gray-400 text-sm italic">
+                              No sessions recorded for {day.date.toLowerCase()}
+                            </p>
+                          </div>
+                        ) : (
+                          day.sessions.map((session, sessionIndex) => (
                           <div key={session.id} className="relative flex items-start">
                             {/* Timeline Marker */}
                             <div className="absolute left-12 flex items-center justify-center">
@@ -508,10 +584,12 @@ export default function Component() {
                               </Card>
                             </div>
                           </div>
-                        ))}
+                          ))
+                        )}
                       </div>
                     </div>
-                  ))}
+                    ))
+                  )}
                 </div>
 
                 {/* Gentle encouragement */}
