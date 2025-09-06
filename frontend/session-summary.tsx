@@ -15,7 +15,7 @@ export default function Component() {
   const sessionData = {
     type: "Medication",
     duration: "4 minutes",
-    timestamp: "Today at 9:00 AM",
+    timestamp: `Today at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`,
     mood: "Calm",
     moodColor: "#C9E4DE",
     keyEvents: [

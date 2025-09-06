@@ -63,8 +63,8 @@ export default function Component() {
               <p className="text-slate-500 text-lg font-light">Today's Care Journey</p>
             </div>
             <div className="text-right">
-              <p className="text-sm text-slate-400 font-medium">Thursday</p>
-              <p className="text-2xl font-light text-slate-700">March 14</p>
+              <p className="text-sm text-slate-400 font-medium">{new Date().toLocaleDateString('en-US', { weekday: 'long' })}</p>
+              <p className="text-2xl font-light text-slate-700">{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</p>
             </div>
           </div>
 

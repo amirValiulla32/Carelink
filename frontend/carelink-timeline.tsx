@@ -8,10 +8,16 @@ import { Plus, Pill, Brain, Heart, Coffee, Moon, MessageCircle, Clock } from "lu
 export default function Component() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
+  const today = new Date()
+  const yesterday = new Date(today)
+  yesterday.setDate(yesterday.getDate() - 1)
+  const dayBefore = new Date(today)
+  dayBefore.setDate(dayBefore.getDate() - 2)
+
   const sessionsByDay = [
     {
       date: "Today",
-      fullDate: "Thursday, March 14",
+      fullDate: today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
       sessions: [
         {
           id: 1,
@@ -31,7 +37,7 @@ export default function Component() {
     },
     {
       date: "Yesterday",
-      fullDate: "Wednesday, March 13",
+      fullDate: yesterday.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
       sessions: [
         {
           id: 3,
@@ -57,8 +63,8 @@ export default function Component() {
       ],
     },
     {
-      date: "March 12",
-      fullDate: "Tuesday, March 12",
+      date: dayBefore.toLocaleDateString('en-US', { month: 'long', day: 'numeric' }),
+      fullDate: dayBefore.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
       sessions: [
         {
           id: 6,
