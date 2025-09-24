@@ -1,14 +1,28 @@
 import database
-from routes import session, transcribe, summarize, medication_chain, freeform_chain, sundowning_chain
-from fastapi import FastAPI, HTTPException
+from routes import session, transcribe, summarize, medication_chain, freeform_chain, sundowning_chain, audio
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 import os
 import sys
+import logging
+import traceback
 
 # Add the backend directory to Python path BEFORE importing local modules
 backend_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, backend_dir)
+
+# Configure comprehensive logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler('carelink_debug.log')
+    ]
+)
+logger = logging.getLogger(__name__)
 
 # Now import local modules
 
@@ -36,10 +50,31 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Global exception handler for debugging
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Global exception handler to log all unhandled exceptions with full traceback."""
+    tb_str = traceback.format_exc()
+    error_msg = f"Unhandled exception in {request.method} {request.url.path}: {str(exc)}"
+
+    logger.error(f"{error_msg}\n{tb_str}")
+
+    # Return detailed error in development mode
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail": f"Internal server error: {str(exc)}",
+            "traceback": tb_str,
+            "path": str(request.url.path),
+            "method": request.method
+        }
+    )
+
 # Include routers
 app.include_router(session.router)
 app.include_router(transcribe.router)
 app.include_router(summarize.router)
+app.include_router(audio.router)
 
 # Include prompt chaining routers
 app.include_router(medication_chain.router)
