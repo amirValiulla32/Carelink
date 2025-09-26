@@ -602,7 +602,7 @@ export default function Component() {
                     </div>
                   ) : (
                     displaySessionsByDay.map((day, dayIndex) => (
-                    <div key={day.date} className="space-y-6">
+                    <div key={day.fullDate} className="space-y-6">
                       {/* Day Header */}
                       <div className="sticky top-0 z-10 py-3 pl-16" style={{ backgroundColor: "#FDFCF9" }}>
                         <h2 className="text-2xl font-light text-gray-800 mb-1" style={{ fontFamily: "Georgia, serif" }}>
