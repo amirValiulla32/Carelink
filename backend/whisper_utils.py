@@ -29,6 +29,8 @@ def get_whisper_binary() -> str:
         ]
     else:
         candidates = [
+            os.path.join(build_dir, "bin", "whisper-cli"),
+            os.path.join(build_dir, "bin", "main"),
             os.path.join(build_dir, "whisper-cli"),
             os.path.join(build_dir, "main"),
         ]

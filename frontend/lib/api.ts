@@ -20,6 +20,40 @@ export interface TranscribeResponse {
   transcript: string
 }
 
+export interface RecordAudioResponse {
+  transcript: string
+  metadata: {
+    session_id: string
+    timestamp: string
+    patient_id: string
+    session_type: string
+    audio_file: string
+  }
+}
+
+export interface ProcessSessionRequest {
+  transcript: string
+  metadata: {
+    session_id: string
+    timestamp: string
+    patient_id: string
+    session_type: string
+    audio_file: string
+  }
+}
+
+export interface ProcessSessionResponse {
+  session_id: string
+  analysis: {
+    summary: string
+    tags: string[]
+    mood_label: string
+    agitation_score: number
+    suggestions: string[]
+  }
+  status: string
+}
+
 export interface SessionListItem {
   session_id: string
   session_type: string
@@ -91,7 +125,42 @@ export class CarelinkAPI {
     return response.json()
   }
 
-  // Transcription
+  // Audio recording and processing
+  async recordAudio(audioBlob: Blob, sessionType: string, patientId: string = "default_patient"): Promise<RecordAudioResponse> {
+    const formData = new FormData()
+    formData.append('audio', audioBlob, 'recording.wav')
+    formData.append('session_type', sessionType)
+    formData.append('patient_id', patientId)
+
+    const response = await fetch(`${this.baseUrl}/record-audio`, {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to record audio: ${response.statusText}`)
+    }
+
+    return response.json()
+  }
+
+  async processSession(request: ProcessSessionRequest): Promise<ProcessSessionResponse> {
+    const response = await fetch(`${this.baseUrl}/process-session`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to process session: ${response.statusText}`)
+    }
+
+    return response.json()
+  }
+
+  // Transcription (legacy method)
   async transcribeAudio(request: TranscribeRequest): Promise<TranscribeResponse> {
     const response = await fetch(`${this.baseUrl}/transcribe`, {
       method: 'POST',
