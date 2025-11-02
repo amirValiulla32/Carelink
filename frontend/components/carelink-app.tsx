@@ -373,8 +373,7 @@ export default function Component() {
         setCurrentScreen("session-type")
         setSelectedSessionType(null)
         setIsAnimating(false)
-        setIsListening(false)
-        setIsRecording(false)
+        audioRecording.resetRecording()
       }, 300)
     } else if (currentScreen === "session-type") {
       setCurrentScreen("home")

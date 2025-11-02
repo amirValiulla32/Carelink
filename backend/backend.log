@@ -4,3 +4,92 @@ INFO:     Started reloader process [17484] using WatchFiles
 INFO:     Started server process [17521]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:63393 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63394 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
+2025-11-01 23:34:59,464 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:34:59,470 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-01 23:34:59,472 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:34:59,478 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:164222]
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_field with data[164266:164285]
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_value with data[164287:164317]
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_data with data[164321:164331]
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_field with data[164375:164394]
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_value with data[164396:164424]
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_data with data[164428:164443]
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 164080
+2025-11-01 23:34:59,502 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_233459_d0ac7372.wav
+2025-11-01 23:35:00,260 - routes.audio - INFO - Successfully converted recordings/session_20251101_233459_d0ac7372.wav to recordings/session_20251101_233459_d0ac7372_converted.wav
+2025-11-01 23:35:00,261 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_233459_d0ac7372_converted.wav
+2025-11-01 23:35:00,973 - routes.audio - INFO - Transcription completed. Length: 151, Content: 
+[00:00:00.000 --> 00:00:02.320]   (clears throat)
+[00:00:02.320 --> 00:00:05.080]   (clears throat)
+INFO:     127.0.0.1:63409 - "POST /api/record-audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63409 - "OPTIONS /api/process-session HTTP/1.1" 200 OK
+2025-11-01 23:35:01,305 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:02.320]   (clears throat)\n[00:00:02.320 --> 00:00:05.080]   (clears throat)\n[00:00:05.080 --> 00:00:07.180]   (clears throat)', 'metadata': {'session_id': 'session_20251101_233459_d0ac7372', 'timestamp': '2025-11-01T23:35:00.974249', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20251101_233459_d0ac7372_converted.wav'}}
+2025-11-01 23:35:01,305 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:02.320]   (clears throat)
+[00:00:02.320 --> 00:00:05.080]   (clears throat)
+, session_id: session_20251101_233459_d0ac7372, session_type: medication
+2025-11-01 23:35:01,306 - routes.audio - INFO - Calling AI summarization for session session_20251101_233459_d0ac7372
+2025-11-01 23:35:01,360 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:8000
+2025-11-01 23:37:01,381 - routes.audio - ERROR - AI summarization error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=120)
+2025-11-01 23:37:01,385 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251101_233459_d0ac7372
+2025-11-01 23:37:01,392 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251101_233459_d0ac7372
+INFO:     127.0.0.1:63409 - "POST /api/process-session HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63412 - "POST /api/summarize HTTP/1.1" 500 Internal Server Error
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:111762]
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_field with data[111806:111825]
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_value with data[111827:111857]
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_data with data[111861:111871]
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_field with data[111915:111934]
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_value with data[111936:111964]
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_data with data[111968:111983]
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 111620
+2025-11-01 23:37:01,444 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_233701_db018b7f.wav
+2025-11-01 23:37:01,688 - routes.audio - INFO - Successfully converted recordings/session_20251101_233701_db018b7f.wav to recordings/session_20251101_233701_db018b7f_converted.wav
+2025-11-01 23:37:01,688 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_233701_db018b7f_converted.wav
+2025-11-01 23:37:02,299 - routes.audio - INFO - Transcription completed. Length: 65, Content: 
+[00:00:00.000 --> 00:00:06.320]   Hello? Yeah, can you hear me?
+
+INFO:     127.0.0.1:63416 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-01 23:37:02,350 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:06.320]   Hello? Yeah, can you hear me?', 'metadata': {'session_id': 'session_20251101_233701_db018b7f', 'timestamp': '2025-11-01T23:37:02.299646', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20251101_233701_db018b7f_converted.wav'}}
+2025-11-01 23:37:02,350 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:06.320]   Hello? Yeah, can you hear me?, session_id: session_20251101_233701_db018b7f, session_type: medication
+2025-11-01 23:37:02,351 - routes.audio - INFO - Calling AI summarization for session session_20251101_233701_db018b7f
+2025-11-01 23:37:02,352 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:8000
+2025-11-01 23:39:02,360 - routes.audio - ERROR - AI summarization error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=120)
+2025-11-01 23:39:02,366 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251101_233701_db018b7f
+2025-11-01 23:39:02,373 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251101_233701_db018b7f
+INFO:     127.0.0.1:63409 - "POST /api/process-session HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63538 - "POST /api/summarize HTTP/1.1" 500 Internal Server Error
