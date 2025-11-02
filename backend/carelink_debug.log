@@ -1,0 +1,345 @@
+2025-09-23 15:35:12,369 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-23 15:35:12,371 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-09-23 15:35:12,371 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-09-23 15:35:12,371 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:35:12,371 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-09-23 15:35:12,371 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-09-23 15:35:12,371 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:35:12,371 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:253548]
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_header_field with data[253592:253611]
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_header_value with data[253613:253643]
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_part_data with data[253647:253657]
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_header_field with data[253701:253720]
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_header_value with data[253722:253750]
+2025-09-23 15:35:12,372 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:35:12,373 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-23 15:35:12,373 - python_multipart.multipart - DEBUG - Calling on_part_data with data[253754:253769]
+2025-09-23 15:35:12,373 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-23 15:35:12,373 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-09-23 15:38:41,932 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-23 15:38:41,934 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-09-23 15:38:41,934 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-09-23 15:38:41,934 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:38:41,934 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-09-23 15:38:41,934 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-09-23 15:38:41,934 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:38:41,934 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:194750]
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_header_field with data[194794:194813]
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_header_value with data[194815:194845]
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_data with data[194849:194859]
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_header_field with data[194903:194922]
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_header_value with data[194924:194952]
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_data with data[194956:194971]
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-23 15:38:41,935 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-09-23 15:38:42,366 - routes.audio - INFO - Processing session with data: {'transcript': '', 'metadata': {'session_id': 'session_20250923_153841_1432db67', 'timestamp': '2025-09-23T15:38:42.355507', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20250923_153841_1432db67.wav'}}
+2025-09-23 15:38:42,366 - routes.audio - INFO - Extracted - transcript: None, session_id: session_20250923_153841_1432db67, session_type: medication
+2025-09-23 15:38:42,366 - routes.audio - ERROR - Missing required data - transcript: False, session_id: True
+2025-09-23 15:38:42,366 - routes.audio - ERROR - Unhandled exception in process_session: 400: Missing transcript or session_id
+2025-09-23 15:38:42,369 - routes.audio - ERROR - Exception traceback: Traceback (most recent call last):
+  File "/Users/amirr/Carelink-1/backend/routes/audio.py", line 127, in process_session
+    raise HTTPException(status_code=400, detail="Missing transcript or session_id")
+fastapi.exceptions.HTTPException: 400: Missing transcript or session_id
+
+2025-09-24 16:13:30,697 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:13:30,706 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-09-24 16:13:30,706 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-09-24 16:13:30,706 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:13:30,706 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-09-24 16:13:30,706 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-09-24 16:13:30,706 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:13:30,706 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:13:30,708 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:45435]
+2025-09-24 16:13:30,708 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:13:30,708 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:13:30,708 - python_multipart.multipart - DEBUG - Calling on_header_field with data[45479:45498]
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_header_value with data[45500:45530]
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_part_data with data[45534:45544]
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_header_field with data[45588:45607]
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_header_value with data[45609:45637]
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_part_data with data[45641:45656]
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:13:30,709 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-09-24 16:13:30,721 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20250924_161330_71630b6e.wav
+2025-09-24 16:13:32,931 - routes.audio - INFO - Successfully converted recordings/session_20250924_161330_71630b6e.wav to recordings/session_20250924_161330_71630b6e_converted.wav
+2025-09-24 16:13:32,931 - routes.audio - INFO - Starting transcription for file: recordings/session_20250924_161330_71630b6e_converted.wav
+2025-09-24 16:13:33,448 - routes.audio - INFO - Transcription completed. Length: 52, Content: 
+[00:00:00.000 --> 00:00:03.000]   Is this working?
+
+2025-09-24 16:13:33,528 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:03.000]   Is this working?', 'metadata': {'session_id': 'session_20250924_161330_71630b6e', 'timestamp': '2025-09-24T16:13:33.450195', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20250924_161330_71630b6e_converted.wav'}}
+2025-09-24 16:13:33,529 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:03.000]   Is this working?, session_id: session_20250924_161330_71630b6e, session_type: medication
+2025-09-24 16:13:33,529 - routes.audio - INFO - Attempting to store analysis for session_id: session_20250924_161330_71630b6e
+2025-09-24 16:13:33,529 - routes.audio - INFO - Successfully stored analysis for session_id: session_20250924_161330_71630b6e
+2025-09-24 16:14:29,425 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:14:29,426 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:79159]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_field with data[79203:79222]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_value with data[79224:79254]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_part_data with data[79258:79268]
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:14:29,427 - python_multipart.multipart - DEBUG - Calling on_header_field with data[79312:79331]
+2025-09-24 16:14:29,428 - python_multipart.multipart - DEBUG - Calling on_header_value with data[79333:79361]
+2025-09-24 16:14:29,428 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:29,428 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:14:29,428 - python_multipart.multipart - DEBUG - Calling on_part_data with data[79365:79380]
+2025-09-24 16:14:29,428 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:14:29,428 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-09-24 16:14:29,438 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20250924_161429_78457555.wav
+2025-09-24 16:14:29,738 - routes.audio - INFO - Successfully converted recordings/session_20250924_161429_78457555.wav to recordings/session_20250924_161429_78457555_converted.wav
+2025-09-24 16:14:29,738 - routes.audio - INFO - Starting transcription for file: recordings/session_20250924_161429_78457555_converted.wav
+2025-09-24 16:14:30,313 - routes.audio - INFO - Transcription completed. Length: 66, Content: 
+[00:00:00.000 --> 00:00:04.640]   >> There you go. This working.
+
+2025-09-24 16:14:30,338 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:04.640]   >> There you go. This working.', 'metadata': {'session_id': 'session_20250924_161429_78457555', 'timestamp': '2025-09-24T16:14:30.314167', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20250924_161429_78457555_converted.wav'}}
+2025-09-24 16:14:30,338 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:04.640]   >> There you go. This working., session_id: session_20250924_161429_78457555, session_type: medication
+2025-09-24 16:14:30,338 - routes.audio - INFO - Attempting to store analysis for session_id: session_20250924_161429_78457555
+2025-09-24 16:14:30,339 - routes.audio - INFO - Successfully stored analysis for session_id: session_20250924_161429_78457555
+2025-09-24 16:14:51,256 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:14:51,258 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-09-24 16:14:51,258 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-09-24 16:14:51,258 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:51,258 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-09-24 16:14:51,258 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-09-24 16:14:51,258 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:51,258 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:165748]
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_header_field with data[165792:165811]
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_header_value with data[165813:165843]
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_part_data with data[165847:165857]
+2025-09-24 16:14:51,259 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_header_field with data[165901:165920]
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_header_value with data[165922:165950]
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_part_data with data[165954:165969]
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-24 16:14:51,260 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-09-24 16:14:51,262 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20250924_161451_cb161aec.wav
+2025-09-24 16:14:51,443 - routes.audio - INFO - Successfully converted recordings/session_20250924_161451_cb161aec.wav to recordings/session_20250924_161451_cb161aec_converted.wav
+2025-09-24 16:14:51,443 - routes.audio - INFO - Starting transcription for file: recordings/session_20250924_161451_cb161aec_converted.wav
+2025-09-24 16:14:51,930 - routes.audio - INFO - Transcription completed. Length: 86, Content: 
+[00:00:00.000 --> 00:00:07.460]   That's test3carilinkcarilink.dev, is this working?
+
+2025-09-24 16:14:51,940 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:07.460]   That's test3carilinkcarilink.dev, is this working?", 'metadata': {'session_id': 'session_20250924_161451_cb161aec', 'timestamp': '2025-09-24T16:14:51.930807', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20250924_161451_cb161aec_converted.wav'}}
+2025-09-24 16:14:51,940 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:07.460]   That's test3carilinkcarilink.dev, is this working?, session_id: session_20250924_161451_cb161aec, session_type: medication
+2025-09-24 16:14:51,940 - routes.audio - INFO - Attempting to store analysis for session_id: session_20250924_161451_cb161aec
+2025-09-24 16:14:51,941 - routes.audio - INFO - Successfully stored analysis for session_id: session_20250924_161451_cb161aec
+2025-09-25 14:02:04,369 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:85311]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_field with data[85355:85374]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_value with data[85376:85406]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_data with data[85410:85420]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_field with data[85464:85483]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_value with data[85485:85513]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_data with data[85517:85532]
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-09-25 14:02:04,372 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-09-25 14:02:04,406 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20250925_140204_999d019e.wav
+2025-09-25 14:02:05,225 - routes.audio - INFO - Successfully converted recordings/session_20250925_140204_999d019e.wav to recordings/session_20250925_140204_999d019e_converted.wav
+2025-09-25 14:02:05,225 - routes.audio - INFO - Starting transcription for file: recordings/session_20250925_140204_999d019e_converted.wav
+2025-09-25 14:02:06,161 - routes.audio - INFO - Transcription completed. Length: 79, Content: 
+[00:00:00.000 --> 00:00:05.000]   I'm a stroke of a motion. Bye-bye. Bye-bye.
+
+2025-09-25 14:02:06,754 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:05.000]   I'm a stroke of a motion. Bye-bye. Bye-bye.", 'metadata': {'session_id': 'session_20250925_140204_999d019e', 'timestamp': '2025-09-25T14:02:06.163828', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20250925_140204_999d019e_converted.wav'}}
+2025-09-25 14:02:06,754 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:05.000]   I'm a stroke of a motion. Bye-bye. Bye-bye., session_id: session_20250925_140204_999d019e, session_type: medication
+2025-09-25 14:02:06,754 - routes.audio - INFO - Attempting to store analysis for session_id: session_20250925_140204_999d019e
+2025-09-25 14:02:06,755 - routes.audio - INFO - Successfully stored analysis for session_id: session_20250925_140204_999d019e
+2025-11-01 23:01:04,775 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:151754]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_field with data[151798:151817]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_value with data[151819:151849]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_part_data with data[151853:151863]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_field with data[151907:151926]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_value with data[151928:151956]
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:04,779 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:04,780 - python_multipart.multipart - DEBUG - Calling on_part_data with data[151960:151975]
+2025-11-01 23:01:04,780 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:04,780 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-11-01 23:01:04,786 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_230104_dd3e7be0.wav
+2025-11-01 23:01:06,811 - routes.audio - INFO - Successfully converted recordings/session_20251101_230104_dd3e7be0.wav to recordings/session_20251101_230104_dd3e7be0_converted.wav
+2025-11-01 23:01:06,811 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_230104_dd3e7be0_converted.wav
+2025-11-01 23:01:06,812 - routes.audio - ERROR - Transcription failed: Model not downloaded!
+2025-11-01 23:01:06,816 - routes.audio - ERROR - Transcription error traceback: Traceback (most recent call last):
+  File "/Users/amirr/Carelink-1/backend/routes/audio.py", line 85, in record_audio
+    transcript = transcribe_audio(wav_file_path)
+  File "/Users/amirr/Carelink-1/backend/transcribe.py", line 14, in transcribe_audio
+    assert MODEL_PATH.exists(), "Model not downloaded!"
+           ~~~~~~~~~~~~~~~~~^^
+AssertionError: Model not downloaded!
+
+2025-11-01 23:01:13,246 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:1068]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_field with data[1112:1131]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_value with data[1133:1163]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_part_data with data[1167:1177]
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:13,247 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:13,248 - python_multipart.multipart - DEBUG - Calling on_header_field with data[1221:1240]
+2025-11-01 23:01:13,248 - python_multipart.multipart - DEBUG - Calling on_header_value with data[1242:1270]
+2025-11-01 23:01:13,248 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:13,248 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:13,248 - python_multipart.multipart - DEBUG - Calling on_part_data with data[1274:1289]
+2025-11-01 23:01:13,248 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:13,248 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-11-01 23:01:13,249 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_230113_0207bdd3.wav
+2025-11-01 23:01:13,383 - routes.audio - INFO - Successfully converted recordings/session_20251101_230113_0207bdd3.wav to recordings/session_20251101_230113_0207bdd3_converted.wav
+2025-11-01 23:01:13,383 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_230113_0207bdd3_converted.wav
+2025-11-01 23:01:13,383 - routes.audio - ERROR - Transcription failed: Model not downloaded!
+2025-11-01 23:01:13,384 - routes.audio - ERROR - Transcription error traceback: Traceback (most recent call last):
+  File "/Users/amirr/Carelink-1/backend/routes/audio.py", line 85, in record_audio
+    transcript = transcribe_audio(wav_file_path)
+  File "/Users/amirr/Carelink-1/backend/transcribe.py", line 14, in transcribe_audio
+    assert MODEL_PATH.exists(), "Model not downloaded!"
+           ~~~~~~~~~~~~~~~~~^^
+AssertionError: Model not downloaded!
+
+2025-11-01 23:01:16,808 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:43162]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_field with data[43206:43225]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_value with data[43227:43257]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_part_data with data[43261:43271]
+2025-11-01 23:01:16,809 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_header_field with data[43315:43334]
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_header_value with data[43336:43364]
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_part_data with data[43368:43383]
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:01:16,810 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-11-01 23:01:16,811 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_230116_2638ec49.wav
+2025-11-01 23:01:16,913 - routes.audio - INFO - Successfully converted recordings/session_20251101_230116_2638ec49.wav to recordings/session_20251101_230116_2638ec49_converted.wav
+2025-11-01 23:01:16,913 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_230116_2638ec49_converted.wav
+2025-11-01 23:01:16,913 - routes.audio - ERROR - Transcription failed: Model not downloaded!
+2025-11-01 23:01:16,914 - routes.audio - ERROR - Transcription error traceback: Traceback (most recent call last):
+  File "/Users/amirr/Carelink-1/backend/routes/audio.py", line 85, in record_audio
+    transcript = transcribe_audio(wav_file_path)
+  File "/Users/amirr/Carelink-1/backend/transcribe.py", line 14, in transcribe_audio
+    assert MODEL_PATH.exists(), "Model not downloaded!"
+           ~~~~~~~~~~~~~~~~~^^
+AssertionError: Model not downloaded!
+
+2025-11-01 23:03:48,152 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:95288]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_field with data[95332:95351]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_value with data[95353:95383]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_data with data[95387:95397]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_field with data[95441:95460]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_value with data[95462:95490]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_data with data[95494:95509]
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-01 23:03:48,154 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-11-01 23:03:48,159 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_230348_853dd8ac.wav
+2025-11-01 23:03:48,433 - routes.audio - INFO - Successfully converted recordings/session_20251101_230348_853dd8ac.wav to recordings/session_20251101_230348_853dd8ac_converted.wav
+2025-11-01 23:03:48,433 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_230348_853dd8ac_converted.wav
+2025-11-01 23:03:49,486 - routes.audio - INFO - Transcription completed. Length: 56, Content: 
+[00:00:00.000 --> 00:00:04.440]   Hello? Hello? Hello?
+
+2025-11-01 23:03:49,506 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:04.440]   Hello? Hello? Hello?', 'metadata': {'session_id': 'session_20251101_230348_853dd8ac', 'timestamp': '2025-11-01T23:03:49.486770', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20251101_230348_853dd8ac_converted.wav'}}
+2025-11-01 23:03:49,506 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:04.440]   Hello? Hello? Hello?, session_id: session_20251101_230348_853dd8ac, session_type: medication
+2025-11-01 23:03:49,506 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251101_230348_853dd8ac
+2025-11-01 23:03:49,507 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251101_230348_853dd8ac

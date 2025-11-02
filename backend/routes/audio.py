@@ -156,19 +156,44 @@ async def process_session(request_data: dict):
             logger.error(f"Missing required data - transcript: {bool(transcript)}, session_id: {bool(session_id)}")
             raise HTTPException(status_code=400, detail="Missing transcript or session_id")
 
-        # For now, create a simple mock analysis result
-        # TODO: Integrate with the full 3-stage chain later
-        analysis_result = {
-            "summary": f"This {session_type} session was successfully recorded and transcribed. The transcript contains: {transcript[:100]}{'...' if len(transcript) > 100 else ''}",
-            "tags": [session_type, "transcribed", "needs_full_analysis"],
-            "mood_label": "Neutral",
-            "agitation_score": 2,
-            "suggestions": [
-                "Review the full transcript for important details",
-                "Consider the context and patient's current state",
-                "Follow up as needed based on session content"
-            ]
-        }
+        # Call the real AI summarization endpoint
+        import requests
+        try:
+            logger.info(f"Calling AI summarization for session {session_id}")
+            summarize_response = requests.post(
+                "http://localhost:8000/api/summarize",
+                json={
+                    "session_id": session_id,
+                    "transcript": transcript,
+                    "session_type": session_type
+                },
+                timeout=120  # AI analysis can take time
+            )
+
+            if summarize_response.status_code == 200:
+                summarize_data = summarize_response.json()
+                analysis_result = {
+                    "summary": summarize_data.get("summary", ""),
+                    "mood_label": summarize_data.get("mood_label", "unknown"),
+                    "agitation_score": summarize_data.get("agitation_score", 0),
+                    "repetition_json": summarize_data.get("repetition_json", []),
+                    "tags": [session_type, "transcribed", "ai_analyzed"]
+                }
+                logger.info(f"AI summarization successful for session {session_id}")
+            else:
+                logger.error(f"AI summarization failed with status {summarize_response.status_code}")
+                raise Exception(f"Summarization API returned {summarize_response.status_code}")
+
+        except Exception as ai_error:
+            logger.error(f"AI summarization error: {str(ai_error)}")
+            # Fallback to basic analysis if AI fails
+            analysis_result = {
+                "summary": f"Transcription completed but AI analysis failed: {str(ai_error)}",
+                "tags": [session_type, "transcribed", "ai_failed"],
+                "mood_label": "unknown",
+                "agitation_score": 0,
+                "suggestions": ["AI analysis unavailable - review transcript manually"]
+            }
 
         # Store analysis results in database (use INSERT OR REPLACE to handle duplicates)
         logger.info(f"Attempting to store analysis for session_id: {session_id}")
