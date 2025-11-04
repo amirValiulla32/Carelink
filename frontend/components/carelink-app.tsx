@@ -27,8 +27,9 @@ import {
 } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
-type Screen = "home" | "session-type" | "session-confirm" | "session-summary"
+type Screen = "home" | "session-type" | "session-confirm" | "processing" | "session-summary"
 type SessionType = "medication" | "sundowning" | "freeform" | null
+type ProcessingStage = "transcribing" | "analyzing" | "complete"
 
 // Audio Waveform Component
 const AudioWaveform = ({ isListening, isRecording }: { isListening: boolean; isRecording: boolean }) => {
@@ -99,6 +100,8 @@ export default function Component() {
   const [recordingResult, setRecordingResult] = useState<RecordAudioResponse | null>(null)
   const [analysisResult, setAnalysisResult] = useState<ProcessSessionResponse | null>(null)
   const [recordingError, setRecordingError] = useState<string | null>(null)
+  const [processingStage, setProcessingStage] = useState<ProcessingStage>("transcribing")
+  const [isTranscriptExpanded, setIsTranscriptExpanded] = useState(false)
 
   // Use the audio recording hook
   const audioRecording = useAudioRecording()
@@ -411,6 +414,10 @@ export default function Component() {
     try {
       if (!selectedSessionType) return
 
+      // Navigate to processing screen immediately
+      setCurrentScreen("processing")
+      setProcessingStage("transcribing")
+
       // Stop recording and get audio blob
       const audioBlob = await audioRecording.stopRecording()
 
@@ -422,23 +429,27 @@ export default function Component() {
       const recordingResponse = await api.recordAudio(audioBlob, selectedSessionType)
       setRecordingResult(recordingResponse)
 
-      // Navigate to summary immediately (don't wait for AI)
-      setCurrentScreen("session-summary")
+      // Move to analyzing stage
+      setProcessingStage("analyzing")
 
-      // Start AI analysis in background (non-blocking)
-      api.processSession({
+      // Start AI analysis
+      const analysisResponse = await api.processSession({
         transcript: recordingResponse.transcript,
         metadata: recordingResponse.metadata
-      }).then(analysisResponse => {
-        setAnalysisResult(analysisResponse)
-      }).catch(error => {
-        console.error('AI analysis failed:', error)
-        // Keep going with just transcript, analysis will show as "processing failed"
       })
+      setAnalysisResult(analysisResponse)
+
+      // Mark as complete and navigate to summary
+      setProcessingStage("complete")
+      setTimeout(() => {
+        setCurrentScreen("session-summary")
+      }, 500) // Brief pause to show completion
 
     } catch (error) {
       console.error('Failed to process recording:', error)
       setRecordingError(error instanceof Error ? error.message : 'Failed to process recording')
+      // Still navigate to summary even on error
+      setCurrentScreen("session-summary")
     }
   }
 
@@ -448,6 +459,7 @@ export default function Component() {
     setRecordingResult(null)
     setAnalysisResult(null)
     setRecordingError(null)
+    setProcessingStage("transcribing")
     setCurrentScreen("home")
     setSelectedSessionType(null)
     setReflectionText("")
@@ -467,6 +479,7 @@ export default function Component() {
     setRecordingResult(null)
     setAnalysisResult(null)
     setRecordingError(null)
+    setProcessingStage("transcribing")
     setCurrentScreen("home")
     setSelectedSessionType(null)
     setReflectionText("")
@@ -478,17 +491,19 @@ export default function Component() {
     setRecordingResult(null)
     setAnalysisResult(null)
     setRecordingError(null)
+    setProcessingStage("transcribing")
     setCurrentScreen("session-confirm")
     setReflectionText("")
   }
 
-  // Clean up recording when leaving confirm screen
+  // Clean up recording when leaving confirm/processing/summary screens
   useEffect(() => {
-    if (currentScreen !== "session-confirm" && currentScreen !== "session-summary") {
+    if (currentScreen !== "session-confirm" && currentScreen !== "processing" && currentScreen !== "session-summary") {
       audioRecording.resetRecording()
       setRecordingResult(null)
       setAnalysisResult(null)
       setRecordingError(null)
+      setProcessingStage("transcribing")
     }
   }, [currentScreen])
 
@@ -902,6 +917,106 @@ export default function Component() {
           </div>
         )}
 
+        {/* Processing Screen */}
+        {currentScreen === "processing" && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6" style={{ backgroundColor: "#FDFCF9" }}>
+            <div className="w-full max-w-lg">
+              <Card className="border-0 shadow-2xl" style={{ backgroundColor: "#FFFFFF" }}>
+                <CardContent className="p-12 text-center">
+                  {/* Animated Processing Icon */}
+                  <div className="mb-8">
+                    <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center animate-pulse">
+                      <Sparkles className="w-12 h-12 text-purple-600" />
+                    </div>
+                  </div>
+
+                  {/* Header */}
+                  <div className="mb-8">
+                    <h1
+                      className="text-3xl font-light text-gray-800 mb-4 leading-relaxed"
+                      style={{ fontFamily: "Georgia, serif" }}
+                    >
+                      {processingStage === "transcribing" && "Capturing your words..."}
+                      {processingStage === "analyzing" && "Understanding the moment..."}
+                      {processingStage === "complete" && "Ready! ✨"}
+                    </h1>
+                    <p className="text-gray-500 text-lg font-light leading-relaxed">
+                      {processingStage === "transcribing" && "Transcribing your recording with care"}
+                      {processingStage === "analyzing" && "AI is analyzing the conversation"}
+                      {processingStage === "complete" && "Your memory has been processed"}
+                    </p>
+                  </div>
+
+                  {/* Progress Steps */}
+                  <div className="mb-8 space-y-3">
+                    {/* Step 1: Transcribing */}
+                    <div className="flex items-center gap-3 p-4 rounded-xl transition-all duration-300"
+                         style={{
+                           backgroundColor: processingStage === "transcribing" ? "#E8F5E8" :
+                                          ["analyzing", "complete"].includes(processingStage) ? "#F0F9FF" : "#F8F9FA"
+                         }}>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                        processingStage === "transcribing" ? "animate-spin" : ""
+                      }`} style={{
+                        backgroundColor: ["analyzing", "complete"].includes(processingStage) ? "#B8D4B8" : "#D4C5F9"
+                      }}>
+                        {["analyzing", "complete"].includes(processingStage) ? "✓" : "1"}
+                      </div>
+                      <div className="text-left flex-1">
+                        <p className="text-sm font-medium text-gray-800">Transcribing Audio</p>
+                        <p className="text-xs text-gray-500">Converting speech to text</p>
+                      </div>
+                    </div>
+
+                    {/* Step 2: Analyzing */}
+                    <div className="flex items-center gap-3 p-4 rounded-xl transition-all duration-300"
+                         style={{
+                           backgroundColor: processingStage === "analyzing" ? "#FFE8D6" :
+                                          processingStage === "complete" ? "#F0F9FF" : "#F8F9FA"
+                         }}>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                        processingStage === "analyzing" ? "animate-pulse" : ""
+                      }`} style={{
+                        backgroundColor: processingStage === "complete" ? "#B8D4B8" :
+                                       processingStage === "analyzing" ? "#FFD4B3" : "#E5E7EB"
+                      }}>
+                        {processingStage === "complete" ? "✓" : "2"}
+                      </div>
+                      <div className="text-left flex-1">
+                        <p className="text-sm font-medium text-gray-800">AI Analysis</p>
+                        <p className="text-xs text-gray-500">Understanding context and mood</p>
+                      </div>
+                    </div>
+
+                    {/* Step 3: Complete */}
+                    <div className="flex items-center gap-3 p-4 rounded-xl transition-all duration-300"
+                         style={{ backgroundColor: processingStage === "complete" ? "#E8F5E8" : "#F8F9FA" }}>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                        processingStage === "complete" ? "animate-bounce" : ""
+                      }`} style={{
+                        backgroundColor: processingStage === "complete" ? "#B8D4B8" : "#E5E7EB"
+                      }}>
+                        {processingStage === "complete" ? "✓" : "3"}
+                      </div>
+                      <div className="text-left flex-1">
+                        <p className="text-sm font-medium text-gray-800">Ready to View</p>
+                        <p className="text-xs text-gray-500">Your memory is prepared</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Encouraging message */}
+                  <div className="p-4 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-200">
+                    <p className="text-gray-600 text-sm italic" style={{ fontFamily: "Georgia, serif" }}>
+                      Taking time to understand what matters...
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        )}
+
         {/* Session Summary */}
         {currentScreen === "session-summary" && (
           <div className="min-h-screen p-8">
@@ -978,6 +1093,10 @@ export default function Component() {
                     <div className="space-y-3">
                       {sessionData.keyEvents.map((event, index) => {
                         const IconComponent = event.icon
+                        const fullTranscript = recordingResult?.transcript || ""
+                        const transcriptPreview = fullTranscript.substring(0, 150)
+                        const hasMore = fullTranscript.length > 150
+
                         return (
                           <div key={index} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50">
                             <div className="flex-shrink-0 mt-1">
@@ -1003,7 +1122,22 @@ export default function Component() {
                                 )}
                               </div>
                               <p className="text-gray-800 font-medium mb-1">{event.event}</p>
-                              <p className="text-gray-600 text-sm">{event.details}</p>
+
+                              {/* Expandable Transcript */}
+                              <div className="text-gray-600 text-sm">
+                                <p className="whitespace-pre-wrap">
+                                  {isTranscriptExpanded ? `Transcript: "${fullTranscript}"` : `Transcript: "${transcriptPreview}${hasMore ? '...' : ''}"`}
+                                </p>
+                                {hasMore && (
+                                  <button
+                                    onClick={() => setIsTranscriptExpanded(!isTranscriptExpanded)}
+                                    className="mt-2 text-xs font-medium hover:underline transition-colors"
+                                    style={{ color: "#8BAAAD" }}
+                                  >
+                                    {isTranscriptExpanded ? "Show less" : "Show more"}
+                                  </button>
+                                )}
+                              </div>
                             </div>
                           </div>
                         )
