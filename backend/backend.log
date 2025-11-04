@@ -1,95 +1,636 @@
 INFO:     Will watch for changes in these directories: ['/Users/amirr/Carelink-1/backend']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [17484] using WatchFiles
-INFO:     Started server process [17521]
+INFO:     Started reloader process [81067] using WatchFiles
+INFO:     Started server process [81069]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     127.0.0.1:63393 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63394 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
-2025-11-01 23:34:59,464 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
-2025-11-01 23:34:59,470 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
-2025-11-01 23:34:59,472 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
-2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
-2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
-2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:34:59,473 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
-2025-11-01 23:34:59,478 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:164222]
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_field with data[164266:164285]
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_value with data[164287:164317]
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_data with data[164321:164331]
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_field with data[164375:164394]
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_value with data[164396:164424]
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_data with data[164428:164443]
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
-2025-11-01 23:34:59,479 - python_multipart.multipart - DEBUG - Calling on_end with no data
-Received file: recording.wav, Content-Type: audio/webm, Size: 164080
-2025-11-01 23:34:59,502 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_233459_d0ac7372.wav
-2025-11-01 23:35:00,260 - routes.audio - INFO - Successfully converted recordings/session_20251101_233459_d0ac7372.wav to recordings/session_20251101_233459_d0ac7372_converted.wav
-2025-11-01 23:35:00,261 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_233459_d0ac7372_converted.wav
-2025-11-01 23:35:00,973 - routes.audio - INFO - Transcription completed. Length: 151, Content: 
-[00:00:00.000 --> 00:00:02.320]   (clears throat)
-[00:00:02.320 --> 00:00:05.080]   (clears throat)
-INFO:     127.0.0.1:63409 - "POST /api/record-audio HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63409 - "OPTIONS /api/process-session HTTP/1.1" 200 OK
-2025-11-01 23:35:01,305 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:02.320]   (clears throat)\n[00:00:02.320 --> 00:00:05.080]   (clears throat)\n[00:00:05.080 --> 00:00:07.180]   (clears throat)', 'metadata': {'session_id': 'session_20251101_233459_d0ac7372', 'timestamp': '2025-11-01T23:35:00.974249', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20251101_233459_d0ac7372_converted.wav'}}
-2025-11-01 23:35:01,305 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:02.320]   (clears throat)
-[00:00:02.320 --> 00:00:05.080]   (clears throat)
-, session_id: session_20251101_233459_d0ac7372, session_type: medication
-2025-11-01 23:35:01,306 - routes.audio - INFO - Calling AI summarization for session session_20251101_233459_d0ac7372
-2025-11-01 23:35:01,360 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:8000
-2025-11-01 23:37:01,381 - routes.audio - ERROR - AI summarization error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=120)
-2025-11-01 23:37:01,385 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251101_233459_d0ac7372
-2025-11-01 23:37:01,392 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251101_233459_d0ac7372
-INFO:     127.0.0.1:63409 - "POST /api/process-session HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63412 - "POST /api/summarize HTTP/1.1" 500 Internal Server Error
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
-2025-11-01 23:37:01,442 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:111762]
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_field with data[111806:111825]
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_value with data[111827:111857]
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_data with data[111861:111871]
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_field with data[111915:111934]
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_value with data[111936:111964]
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_data with data[111968:111983]
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
-2025-11-01 23:37:01,443 - python_multipart.multipart - DEBUG - Calling on_end with no data
-Received file: recording.wav, Content-Type: audio/webm, Size: 111620
-2025-11-01 23:37:01,444 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251101_233701_db018b7f.wav
-2025-11-01 23:37:01,688 - routes.audio - INFO - Successfully converted recordings/session_20251101_233701_db018b7f.wav to recordings/session_20251101_233701_db018b7f_converted.wav
-2025-11-01 23:37:01,688 - routes.audio - INFO - Starting transcription for file: recordings/session_20251101_233701_db018b7f_converted.wav
-2025-11-01 23:37:02,299 - routes.audio - INFO - Transcription completed. Length: 65, Content: 
-[00:00:00.000 --> 00:00:06.320]   Hello? Yeah, can you hear me?
+INFO:     127.0.0.1:65039 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65088 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65089 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
+2025-11-03 20:03:44,541 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:03:44,542 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 20:03:44,542 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 20:03:44,542 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:03:44,543 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 20:03:44,543 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 20:03:44,543 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:03:44,543 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:03:44,543 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:255448]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:184194]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_header_field with data[184238:184257]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_header_value with data[184259:184289]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_data with data[184293:184301]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_header_field with data[184345:184364]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_header_value with data[184366:184394]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_data with data[184398:184413]
+2025-11-03 20:03:44,544 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:03:44,545 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 439500
+2025-11-03 20:03:44,550 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_200344_5f4b7441.wav
+2025-11-03 20:03:45,272 - routes.audio - INFO - Successfully converted recordings/session_20251103_200344_5f4b7441.wav to recordings/session_20251103_200344_5f4b7441_converted.wav
+2025-11-03 20:03:45,272 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_200344_5f4b7441_converted.wav
+2025-11-03 20:03:46,180 - routes.audio - INFO - Transcription completed. Length: 190, Content: 
+[00:00:00.000 --> 00:00:13.280]   right. The next is your x right x is one due to x is minimum path
+INFO:     127.0.0.1:65116 - "POST /api/record-audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65116 - "OPTIONS /api/process-session HTTP/1.1" 200 OK
+2025-11-03 20:03:46,201 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:13.280]   right. The next is your x right x is one due to x is minimum path this one from x to z you can go\n[00:00:14.240 --> 00:00:16.480]   Two, three, five, ten.', 'metadata': {'session_id': 'session_20251103_200344_5f4b7441', 'timestamp': '2025-11-03T20:03:46.181056', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_200344_5f4b7441_converted.wav'}}
+2025-11-03 20:03:46,202 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:13.280]   right. The next is your x right x is one due to x is minimum path , session_id: session_20251103_200344_5f4b7441, session_type: freeform
+2025-11-03 20:03:46,202 - routes.audio - INFO - Calling AI summarization for session session_20251103_200344_5f4b7441
+2025-11-03 20:03:46,227 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 20:03:46,229 - routes.audio - ERROR - AI summarization error: 503: Cannot connect to Ollama API. Make sure Ollama is running.
+2025-11-03 20:03:46,229 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_200344_5f4b7441
+2025-11-03 20:03:46,230 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_200344_5f4b7441
+INFO:     127.0.0.1:65116 - "POST /api/process-session HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65303 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65304 - "GET /api/sessions?limit=100&offset=0 HTTP/1.1" 200 OK
+2025-11-03 20:05:31,141 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:05:31,145 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:255448]
+2025-11-03 20:05:31,146 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:102530]
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_header_field with data[102574:102593]
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_header_value with data[102595:102625]
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_part_data with data[102629:102637]
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_header_field with data[102681:102700]
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_header_value with data[102702:102730]
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_part_data with data[102734:102749]
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:05:31,147 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 357836
+2025-11-03 20:05:31,171 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_200531_c1d126c1.wav
+2025-11-03 20:05:31,451 - routes.audio - INFO - Successfully converted recordings/session_20251103_200531_c1d126c1.wav to recordings/session_20251103_200531_c1d126c1_converted.wav
+2025-11-03 20:05:31,451 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_200531_c1d126c1_converted.wav
+2025-11-03 20:05:32,184 - routes.audio - INFO - Transcription completed. Length: 235, Content: 
+[00:00:00.000 --> 00:00:02.200]   See, use this by Kistra algorithm.
+[00:00:02.200 --> 00:00:07.200
+INFO:     127.0.0.1:65317 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 20:05:32,204 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:02.200]   See, use this by Kistra algorithm.\n[00:00:02.200 --> 00:00:07.200]   This is vector, use this problem for it.\n[00:00:07.200 --> 00:00:11.520]   All right.\n[00:00:11.520 --> 00:00:13.780]   (coughing)', 'metadata': {'session_id': 'session_20251103_200531_c1d126c1', 'timestamp': '2025-11-03T20:05:32.185403', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_200531_c1d126c1_converted.wav'}}
+2025-11-03 20:05:32,204 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:02.200]   See, use this by Kistra algorithm.
+[00:00:02.200 --> 00:00:07.200], session_id: session_20251103_200531_c1d126c1, session_type: freeform
+2025-11-03 20:05:32,204 - routes.audio - INFO - Calling AI summarization for session session_20251103_200531_c1d126c1
+2025-11-03 20:05:32,209 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 20:05:32,267 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 400 66
+2025-11-03 20:05:32,268 - routes.audio - ERROR - AI summarization error: 502: Ollama API error: 400
+2025-11-03 20:05:32,268 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_200531_c1d126c1
+2025-11-03 20:05:32,270 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_200531_c1d126c1
+INFO:     127.0.0.1:65317 - "POST /api/process-session HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49713 - "GET /health HTTP/1.1" 200 OK
+2025-11-03 20:11:26,587 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:11:26,588 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 20:11:26,588 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 20:11:26,588 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:11:26,588 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 20:11:26,588 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 20:11:26,588 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:11:26,588 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:255448]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:60916]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_header_field with data[60960:60979]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_header_value with data[60981:61011]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_data with data[61015:61023]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_header_field with data[61067:61086]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_header_value with data[61088:61116]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_data with data[61120:61135]
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:11:26,589 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 316222
+2025-11-03 20:11:26,594 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_201126_22d38493.wav
+2025-11-03 20:11:27,212 - routes.audio - INFO - Successfully converted recordings/session_20251103_201126_22d38493.wav to recordings/session_20251103_201126_22d38493_converted.wav
+2025-11-03 20:11:27,213 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_201126_22d38493_converted.wav
+2025-11-03 20:11:27,991 - routes.audio - INFO - Transcription completed. Length: 236, Content: 
+[00:00:00.000 --> 00:00:02.000]   Everybody knows good neighbors
+[00:00:02.000 --> 00:00:04.680]   
+INFO:     127.0.0.1:49758 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 20:11:28,009 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:02.000]   Everybody knows good neighbors\n[00:00:02.000 --> 00:00:04.680]   And send off the information\n[00:00:04.680 --> 00:00:09.680]   You said it can't be huge concrete right any information come in and now", 'metadata': {'session_id': 'session_20251103_201126_22d38493', 'timestamp': '2025-11-03T20:11:27.991901', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_201126_22d38493_converted.wav'}}
+2025-11-03 20:11:28,009 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:02.000]   Everybody knows good neighbors
+[00:00:02.000 --> 00:00:04.680]   A, session_id: session_20251103_201126_22d38493, session_type: freeform
+2025-11-03 20:11:28,009 - routes.audio - INFO - Calling AI summarization for session session_20251103_201126_22d38493
+2025-11-03 20:11:28,012 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 20:11:31,435 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 20:11:31,438 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "Very brief, fragmented conversation with unclear themes. Patient speaks about neighbors and sending/receiving information in disjointed phrases that lack clear context or narra'
+2025-11-03 20:11:31,438 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "Very brief, fragmented conversation with unclear themes. Patient speaks about neighbors and sending/receiving information in disjointed phrases that lack clear context or narrative flo'
+2025-11-03 20:11:31,438 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "Very brief, fragmented conversation with unclear themes. Patient speaks about neighbors and sending/receiving information in disjointed phrases that lack clear context or narrative flo'
+2025-11-03 20:11:31,438 - routes.audio - INFO - AI summarization successful for session session_20251103_201126_22d38493
+2025-11-03 20:11:31,439 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_201126_22d38493
+2025-11-03 20:11:31,442 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_201126_22d38493
+INFO:     127.0.0.1:49758 - "POST /api/process-session HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'routes/audio.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81069]
+INFO:     Started server process [10727]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-11-03 20:14:03,723 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:113419]
+2025-11-03 20:14:03,725 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_header_field with data[113463:113482]
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_header_value with data[113484:113514]
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_part_data with data[113518:113526]
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_header_field with data[113570:113589]
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_header_value with data[113591:113619]
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_part_data with data[113623:113638]
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 20:14:03,726 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 113277
+2025-11-03 20:14:03,729 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_201403_0f58aca5.wav
+2025-11-03 20:14:03,979 - routes.audio - INFO - Successfully converted recordings/session_20251103_201403_0f58aca5.wav to recordings/session_20251103_201403_0f58aca5_converted.wav
+2025-11-03 20:14:03,979 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_201403_0f58aca5_converted.wav
+2025-11-03 20:14:04,667 - routes.audio - INFO - Transcription completed. Length: 219, Content: 
+[00:00:00.000 --> 00:00:02.100]   What's the suspected running, how about that?
+[00:00:02.100 --> 0
+INFO:     127.0.0.1:50017 - "POST /api/record-audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50017 - "OPTIONS /api/process-session HTTP/1.1" 200 OK
+2025-11-03 20:14:04,687 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:02.100]   What's the suspected running, how about that?\n[00:00:02.100 --> 00:00:02.800]   What are they?\n[00:00:02.800 --> 00:00:03.400]   What are they?\n[00:00:03.400 --> 00:00:03.900]   What?", 'metadata': {'session_id': 'session_20251103_201403_0f58aca5', 'timestamp': '2025-11-03T20:14:04.667687', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_201403_0f58aca5_converted.wav'}}
+2025-11-03 20:14:04,687 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:02.100]   What's the suspected running, how about that?
+[00:00:02.100 --> 00, session_id: session_20251103_201403_0f58aca5, session_type: freeform
+2025-11-03 20:14:04,687 - routes.audio - INFO - Calling AI summarization for session session_20251103_201403_0f58aca5
+2025-11-03 20:14:04,695 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 20:14:08,953 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 20:14:08,953 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "A very brief, incomplete conversation fragment where the patient appears to be asking about something \'running\' and then repeats questions seeking clarification. The conversati'
+2025-11-03 20:14:08,953 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "A very brief, incomplete conversation fragment where the patient appears to be asking about something \'running\' and then repeats questions seeking clarification. The conversation lacks'
+2025-11-03 20:14:08,953 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "A very brief, incomplete conversation fragment where the patient appears to be asking about something \'running\' and then repeats questions seeking clarification. The conversation lacks'
+2025-11-03 20:14:08,954 - routes.audio - INFO - AI summarization successful for session session_20251103_201403_0f58aca5
+2025-11-03 20:14:08,954 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_201403_0f58aca5
+2025-11-03 20:14:08,955 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_201403_0f58aca5
+INFO:     127.0.0.1:50017 - "POST /api/process-session HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'routes/summarize.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [10727]
+INFO:     Started server process [29653]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'routes/audio.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [29653]
+INFO:     Started server process [36260]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'routes/audio.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36260]
+INFO:     Started server process [36749]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-11-03 21:50:48,908 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:50:48,913 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:174646]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_field with data[174690:174709]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_value with data[174711:174741]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_data with data[174745:174753]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_field with data[174797:174816]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_value with data[174818:174846]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_data with data[174850:174865]
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:50:48,914 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 174504
+2025-11-03 21:50:48,926 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215048_8a4fb283.wav
+2025-11-03 21:50:49,493 - routes.audio - INFO - Successfully converted recordings/session_20251103_215048_8a4fb283.wav to recordings/session_20251103_215048_8a4fb283_converted.wav
+2025-11-03 21:50:49,493 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215048_8a4fb283_converted.wav
+2025-11-03 21:50:50,383 - routes.audio - INFO - Transcription completed. Length: 128, Content: 
+[00:00:00.000 --> 00:00:03.000]   You better not feel me.
+[00:00:03.000 --> 00:00:06.000]   Hello, 
+INFO:     127.0.0.1:50774 - "POST /api/record-audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50774 - "OPTIONS /api/process-session HTTP/1.1" 200 OK
+2025-11-03 21:50:50,419 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:03.000]   You better not feel me.\n[00:00:03.000 --> 00:00:06.000]   Hello, hello, hello, hello, hello.', 'metadata': {'session_id': 'session_20251103_215048_8a4fb283', 'timestamp': '2025-11-03T21:50:50.384375', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_215048_8a4fb283_converted.wav'}}
+2025-11-03 21:50:50,419 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:03.000]   You better not feel me.
+[00:00:03.000 --> 00:00:06.000]   Hello, h, session_id: session_20251103_215048_8a4fb283, session_type: freeform
+2025-11-03 21:50:50,419 - routes.audio - INFO - Calling AI summarization for session session_20251103_215048_8a4fb283
+2025-11-03 21:50:50,464 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:50:56,127 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:50:56,130 - routes.summarize - INFO - Raw response (first 200 chars): '{\n  "summary": "Extremely brief interaction containing an unclear statement followed by a repetitive greeting.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["Initial unclear sta'
+2025-11-03 21:50:56,130 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "Extremely brief interaction containing an unclear statement followed by a repetitive greeting.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["Initial unclear sta'
+2025-11-03 21:50:56,131 - routes.summarize - ERROR - JSON parsing failed: Missing required field: repetition_json
+2025-11-03 21:50:56,131 - routes.summarize - ERROR - Failed to parse text: '{\n  "summary": "Extremely brief interaction containing an unclear statement followed by a repetitive greeting.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["Initial unclear statement: \'You better not feel me.\'", "Repetitive greeting: \'Hello, hello, hello, hello, hello.\'"],\n  "tags": ["repetitive speech", "unclear expression", "limited engagement"],\n  "conversation_themes": ["Greeting"],\n  "agitation_score": 0.0,\n  "mood_label": "neutral",\n  "suggestions": "Due to the limi'
+2025-11-03 21:50:56,131 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:50:56,131 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:50:56,131 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: '{\n  "summary": "Extremely brief interaction containing an unclear statement followed by a repetitive greeting.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["Initial unclear sta'
+2025-11-03 21:50:56,131 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: '{\n  "summary": "Extremely brief interaction containing an unclear statement followed by a repetitive greeting.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["Initial unclear sta'
+2025-11-03 21:50:56,131 - routes.audio - INFO - AI summarization successful for session session_20251103_215048_8a4fb283
+2025-11-03 21:50:56,131 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215048_8a4fb283
+2025-11-03 21:50:56,132 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: '{\n  "summary": "Extremely brief interaction containing an unclear statement followed by a repetitive greeting.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["Initial unclear sta'
+2025-11-03 21:50:56,134 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215048_8a4fb283
+INFO:     127.0.0.1:50774 - "POST /api/process-session HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'routes/summarize.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36749]
+INFO:     Started server process [41268]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-11-03 21:52:37,630 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:52:37,631 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:125199]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_field with data[125243:125262]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_value with data[125264:125294]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125298:125306]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_field with data[125350:125369]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_value with data[125371:125399]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125403:125418]
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:52:37,632 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 125057
+2025-11-03 21:52:37,639 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215237_a5d9038e.wav
+2025-11-03 21:52:37,919 - routes.audio - INFO - Successfully converted recordings/session_20251103_215237_a5d9038e.wav to recordings/session_20251103_215237_a5d9038e_converted.wav
+2025-11-03 21:52:37,920 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215237_a5d9038e_converted.wav
+2025-11-03 21:52:39,281 - routes.audio - INFO - Transcription completed. Length: 67, Content: 
+[00:00:00.000 --> 00:00:04.920]   Blah blah blah. Ch-ch-ch-ch-ch.
 
-INFO:     127.0.0.1:63416 - "POST /api/record-audio HTTP/1.1" 200 OK
-2025-11-01 23:37:02,350 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:06.320]   Hello? Yeah, can you hear me?', 'metadata': {'session_id': 'session_20251101_233701_db018b7f', 'timestamp': '2025-11-01T23:37:02.299646', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20251101_233701_db018b7f_converted.wav'}}
-2025-11-01 23:37:02,350 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:06.320]   Hello? Yeah, can you hear me?, session_id: session_20251101_233701_db018b7f, session_type: medication
-2025-11-01 23:37:02,351 - routes.audio - INFO - Calling AI summarization for session session_20251101_233701_db018b7f
-2025-11-01 23:37:02,352 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:8000
-2025-11-01 23:39:02,360 - routes.audio - ERROR - AI summarization error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=120)
-2025-11-01 23:39:02,366 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251101_233701_db018b7f
-2025-11-01 23:39:02,373 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251101_233701_db018b7f
-INFO:     127.0.0.1:63409 - "POST /api/process-session HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63538 - "POST /api/summarize HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:50887 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 21:52:39,296 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:04.920]   Blah blah blah. Ch-ch-ch-ch-ch.', 'metadata': {'session_id': 'session_20251103_215237_a5d9038e', 'timestamp': '2025-11-03T21:52:39.281650', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_215237_a5d9038e_converted.wav'}}
+2025-11-03 21:52:39,296 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:04.920]   Blah blah blah. Ch-ch-ch-ch-ch., session_id: session_20251103_215237_a5d9038e, session_type: freeform
+2025-11-03 21:52:39,296 - routes.audio - INFO - Calling AI summarization for session session_20251103_215237_a5d9038e
+2025-11-03 21:52:39,321 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:52:44,673 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:52:44,674 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "The transcript contains only non-verbal vocalizations without discernible words or meaningful conversation content. No substantive dialogue occurred that can be analyzed for co'
+2025-11-03 21:52:44,674 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "The transcript contains only non-verbal vocalizations without discernible words or meaningful conversation content. No substantive dialogue occurred that can be analyzed for cognitive '
+2025-11-03 21:52:44,674 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "The transcript contains only non-verbal vocalizations without discernible words or meaningful conversation content. No substantive dialogue occurred that can be analyzed for cognitive '
+2025-11-03 21:52:44,674 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:52:44,674 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:52:44,674 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'The transcript contains only non-verbal vocalizations without discernible words or meaningful conversation content. No substantive dialogue occurred that can be analyzed for cognitive assessment.'
+2025-11-03 21:52:44,674 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'The transcript contains only non-verbal vocalizations without discernible words or meaningful conversation content. No substantive dialogue occurred that can be analyzed for cognitive assessment.'
+2025-11-03 21:52:44,674 - routes.audio - INFO - AI summarization successful for session session_20251103_215237_a5d9038e
+2025-11-03 21:52:44,674 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215237_a5d9038e
+2025-11-03 21:52:44,674 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'The transcript contains only non-verbal vocalizations without discernible words or meaningful conversation content. No substantive dialogue occurred that can be analyzed for cognitive assessment.'
+2025-11-03 21:52:44,675 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215237_a5d9038e
+INFO:     127.0.0.1:50887 - "POST /api/process-session HTTP/1.1" 200 OK
+2025-11-03 21:53:01,573 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:01,574 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:53:01,574 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:53:01,574 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:01,574 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:53:01,574 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:53:01,574 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:01,574 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:49638]
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_header_field with data[49682:49701]
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_header_value with data[49703:49733]
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_data with data[49737:49745]
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_header_field with data[49789:49808]
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_header_value with data[49810:49838]
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_data with data[49842:49857]
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:01,575 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 49496
+2025-11-03 21:53:01,577 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215301_deb6adfa.wav
+2025-11-03 21:53:01,761 - routes.audio - INFO - Successfully converted recordings/session_20251103_215301_deb6adfa.wav to recordings/session_20251103_215301_deb6adfa_converted.wav
+2025-11-03 21:53:01,761 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215301_deb6adfa_converted.wav
+2025-11-03 21:53:02,290 - routes.audio - INFO - Transcription completed. Length: 63, Content: 
+[00:00:00.000 --> 00:00:02.000]   All right, what's up final?
+
+INFO:     127.0.0.1:50896 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 21:53:02,312 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:02.000]   All right, what's up final?", 'metadata': {'session_id': 'session_20251103_215301_deb6adfa', 'timestamp': '2025-11-03T21:53:02.291050', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_215301_deb6adfa_converted.wav'}}
+2025-11-03 21:53:02,312 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:02.000]   All right, what's up final?, session_id: session_20251103_215301_deb6adfa, session_type: freeform
+2025-11-03 21:53:02,312 - routes.audio - INFO - Calling AI summarization for session session_20251103_215301_deb6adfa
+2025-11-03 21:53:02,317 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:53:05,664 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:53:05,665 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "Very brief conversation opening with a friendly check-in. The conversation consists of a single greeting phrase.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_momen'
+2025-11-03 21:53:05,666 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "Very brief conversation opening with a friendly check-in. The conversation consists of a single greeting phrase.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["C'
+2025-11-03 21:53:05,666 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "Very brief conversation opening with a friendly check-in. The conversation consists of a single greeting phrase.",\n  "tone": "neutral",\n  "repeated_questions": [],\n  "key_moments": ["C'
+2025-11-03 21:53:05,666 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:53:05,666 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:53:05,666 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'Very brief conversation opening with a friendly check-in. The conversation consists of a single greeting phrase.'
+2025-11-03 21:53:05,667 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'Very brief conversation opening with a friendly check-in. The conversation consists of a single greeting phrase.'
+2025-11-03 21:53:05,667 - routes.audio - INFO - AI summarization successful for session session_20251103_215301_deb6adfa
+2025-11-03 21:53:05,667 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215301_deb6adfa
+2025-11-03 21:53:05,667 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'Very brief conversation opening with a friendly check-in. The conversation consists of a single greeting phrase.'
+2025-11-03 21:53:05,669 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215301_deb6adfa
+INFO:     127.0.0.1:50896 - "POST /api/process-session HTTP/1.1" 200 OK
+2025-11-03 21:53:15,962 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:15,964 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:53:15,964 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:53:15,964 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:15,964 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:53:15,964 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:53:15,964 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:15,964 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:221945]
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_header_field with data[221989:222008]
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_header_value with data[222010:222040]
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:15,965 - python_multipart.multipart - DEBUG - Calling on_part_data with data[222044:222052]
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_header_field with data[222096:222115]
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_header_value with data[222117:222145]
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_part_data with data[222149:222164]
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:15,966 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 221803
+2025-11-03 21:53:15,969 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215315_282f3e95.wav
+2025-11-03 21:53:16,148 - routes.audio - INFO - Successfully converted recordings/session_20251103_215315_282f3e95.wav to recordings/session_20251103_215315_282f3e95_converted.wav
+2025-11-03 21:53:16,148 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215315_282f3e95_converted.wav
+2025-11-03 21:53:16,692 - routes.audio - INFO - Transcription completed. Length: 193, Content: 
+[00:00:00.000 --> 00:00:06.000]   Caroling final test one, you know what I'm saying? Don't time out
+INFO:     127.0.0.1:50902 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 21:53:16,700 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:06.000]   Caroling final test one, you know what I'm saying? Don't time out. Don't do anything.\n[00:00:06.000 --> 00:00:08.000]   Let me know what the transcript says.", 'metadata': {'session_id': 'session_20251103_215315_282f3e95', 'timestamp': '2025-11-03T21:53:16.692771', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_215315_282f3e95_converted.wav'}}
+2025-11-03 21:53:16,700 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:06.000]   Caroling final test one, you know what I'm saying? Don't time out., session_id: session_20251103_215315_282f3e95, session_type: freeform
+2025-11-03 21:53:16,700 - routes.audio - INFO - Calling AI summarization for session session_20251103_215315_282f3e95
+2025-11-03 21:53:16,702 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:53:19,787 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:53:19,788 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "Very brief audio check where the speaker is testing recording equipment and requesting transcript feedback.",\n  "tone": "instructional",\n  "repeated_questions": [],\n  "key_mome'
+2025-11-03 21:53:19,788 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "Very brief audio check where the speaker is testing recording equipment and requesting transcript feedback.",\n  "tone": "instructional",\n  "repeated_questions": [],\n  "key_moments": ["'
+2025-11-03 21:53:19,788 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "Very brief audio check where the speaker is testing recording equipment and requesting transcript feedback.",\n  "tone": "instructional",\n  "repeated_questions": [],\n  "key_moments": ["'
+2025-11-03 21:53:19,788 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:53:19,788 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:53:19,789 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'Very brief audio check where the speaker is testing recording equipment and requesting transcript feedback.'
+2025-11-03 21:53:19,789 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'Very brief audio check where the speaker is testing recording equipment and requesting transcript feedback.'
+2025-11-03 21:53:19,789 - routes.audio - INFO - AI summarization successful for session session_20251103_215315_282f3e95
+2025-11-03 21:53:19,789 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215315_282f3e95
+2025-11-03 21:53:19,789 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'Very brief audio check where the speaker is testing recording equipment and requesting transcript feedback.'
+2025-11-03 21:53:19,790 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215315_282f3e95
+INFO:     127.0.0.1:50902 - "POST /api/process-session HTTP/1.1" 200 OK
+2025-11-03 21:53:36,882 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:178715]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_field with data[178759:178778]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_value with data[178780:178810]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_data with data[178814:178822]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_field with data[178866:178885]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_value with data[178887:178915]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_data with data[178919:178934]
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:36,883 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 178573
+2025-11-03 21:53:36,884 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215336_9e3c4047.wav
+2025-11-03 21:53:37,080 - routes.audio - INFO - Successfully converted recordings/session_20251103_215336_9e3c4047.wav to recordings/session_20251103_215336_9e3c4047_converted.wav
+2025-11-03 21:53:37,081 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215336_9e3c4047_converted.wav
+2025-11-03 21:53:37,637 - routes.audio - INFO - Transcription completed. Length: 67, Content: 
+[00:00:00.000 --> 00:00:02.700]   Aggressive it's very aggressive
+
+INFO:     127.0.0.1:50913 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 21:53:37,644 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:02.700]   Aggressive it's very aggressive", 'metadata': {'session_id': 'session_20251103_215336_9e3c4047', 'timestamp': '2025-11-03T21:53:37.637634', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_215336_9e3c4047_converted.wav'}}
+2025-11-03 21:53:37,644 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:02.700]   Aggressive it's very aggressive, session_id: session_20251103_215336_9e3c4047, session_type: freeform
+2025-11-03 21:53:37,644 - routes.audio - INFO - Calling AI summarization for session session_20251103_215336_9e3c4047
+2025-11-03 21:53:37,645 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:53:41,005 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:53:41,006 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "Very brief interaction consisting of a single statement describing something as aggressive. The patient appears to be making an observation or expressing concern about a percei'
+2025-11-03 21:53:41,006 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "Very brief interaction consisting of a single statement describing something as aggressive. The patient appears to be making an observation or expressing concern about a perceived thre'
+2025-11-03 21:53:41,006 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "Very brief interaction consisting of a single statement describing something as aggressive. The patient appears to be making an observation or expressing concern about a perceived thre'
+2025-11-03 21:53:41,006 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:53:41,006 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:53:41,006 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'Very brief interaction consisting of a single statement describing something as aggressive. The patient appears to be making an observation or expressing concern about a perceived threat or behavior.'
+2025-11-03 21:53:41,006 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'Very brief interaction consisting of a single statement describing something as aggressive. The patient appears to be making an observation or expressing concern about a perceived threat or behavior.'
+2025-11-03 21:53:41,006 - routes.audio - INFO - AI summarization successful for session session_20251103_215336_9e3c4047
+2025-11-03 21:53:41,007 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215336_9e3c4047
+2025-11-03 21:53:41,007 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'Very brief interaction consisting of a single statement describing something as aggressive. The patient appears to be making an observation or expressing concern about a perceived threat or behavior.'
+2025-11-03 21:53:41,008 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215336_9e3c4047
+INFO:     127.0.0.1:50913 - "POST /api/process-session HTTP/1.1" 200 OK
+2025-11-03 21:53:59,394 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:59,395 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:53:59,395 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:53:59,395 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:59,395 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:53:59,395 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:53:59,395 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:59,395 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:59,396 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:255448]
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:256000]
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:29815]
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_header_field with data[29859:29878]
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_header_value with data[29880:29910]
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_part_data with data[29914:29922]
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_header_field with data[29966:29985]
+2025-11-03 21:53:59,397 - python_multipart.multipart - DEBUG - Calling on_header_value with data[29987:30015]
+2025-11-03 21:53:59,398 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:53:59,398 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:53:59,398 - python_multipart.multipart - DEBUG - Calling on_part_data with data[30019:30034]
+2025-11-03 21:53:59,398 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:53:59,398 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 541121
+2025-11-03 21:53:59,401 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215359_e1cd85cb.wav
+2025-11-03 21:53:59,591 - routes.audio - INFO - Successfully converted recordings/session_20251103_215359_e1cd85cb.wav to recordings/session_20251103_215359_e1cd85cb_converted.wav
+2025-11-03 21:53:59,591 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215359_e1cd85cb_converted.wav
+2025-11-03 21:54:00,126 - routes.audio - INFO - Transcription completed. Length: 47, Content: 
+[00:00:00.000 --> 00:00:22.000]   [ Silence ]
+
+INFO:     127.0.0.1:50935 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 21:54:00,136 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:22.000]   [ Silence ]', 'metadata': {'session_id': 'session_20251103_215359_e1cd85cb', 'timestamp': '2025-11-03T21:54:00.127316', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_215359_e1cd85cb_converted.wav'}}
+2025-11-03 21:54:00,136 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:22.000]   [ Silence ], session_id: session_20251103_215359_e1cd85cb, session_type: freeform
+2025-11-03 21:54:00,136 - routes.audio - INFO - Calling AI summarization for session session_20251103_215359_e1cd85cb
+2025-11-03 21:54:00,138 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:54:04,744 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:54:04,745 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "The transcript consists entirely of silence with no verbal interaction from the patient.",\n  "tone": "unresponsive",\n  "repeated_questions": [],\n  "key_moments": ["22 seconds o'
+2025-11-03 21:54:04,745 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "The transcript consists entirely of silence with no verbal interaction from the patient.",\n  "tone": "unresponsive",\n  "repeated_questions": [],\n  "key_moments": ["22 seconds of uninte'
+2025-11-03 21:54:04,745 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "The transcript consists entirely of silence with no verbal interaction from the patient.",\n  "tone": "unresponsive",\n  "repeated_questions": [],\n  "key_moments": ["22 seconds of uninte'
+2025-11-03 21:54:04,745 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:54:04,745 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:54:04,745 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'The transcript consists entirely of silence with no verbal interaction from the patient.'
+2025-11-03 21:54:04,745 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'The transcript consists entirely of silence with no verbal interaction from the patient.'
+2025-11-03 21:54:04,745 - routes.audio - INFO - AI summarization successful for session session_20251103_215359_e1cd85cb
+2025-11-03 21:54:04,745 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215359_e1cd85cb
+2025-11-03 21:54:04,745 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'The transcript consists entirely of silence with no verbal interaction from the patient.'
+2025-11-03 21:54:04,747 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215359_e1cd85cb
+INFO:     127.0.0.1:50935 - "POST /api/process-session HTTP/1.1" 200 OK
+2025-11-03 21:54:44,280 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:54:44,282 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:54:44,282 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:54:44,282 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:54:44,282 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:54:44,282 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:54:44,282 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:54:44,282 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:255448]
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:71198]
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_header_field with data[71242:71261]
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_header_value with data[71263:71293]
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:54:44,283 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_part_data with data[71297:71307]
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_header_field with data[71351:71370]
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_header_value with data[71372:71400]
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_part_data with data[71404:71419]
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:54:44,284 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 326504
+2025-11-03 21:54:44,286 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215444_bc65c52a.wav
+2025-11-03 21:54:44,480 - routes.audio - INFO - Successfully converted recordings/session_20251103_215444_bc65c52a.wav to recordings/session_20251103_215444_bc65c52a_converted.wav
+2025-11-03 21:54:44,480 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215444_bc65c52a_converted.wav
+2025-11-03 21:54:45,182 - routes.audio - INFO - Transcription completed. Length: 263, Content: 
+[00:00:00.000 --> 00:00:04.000]   This is test number one for medication. We're seeing if this work
+INFO:     127.0.0.1:50951 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 21:54:45,197 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:04.000]   This is test number one for medication. We're seeing if this works\n[00:00:04.000 --> 00:00:07.160]   I'm gonna give some patience on some weed\n[00:00:07.160 --> 00:00:11.320]   Under the under the table, you know saying illegal", 'metadata': {'session_id': 'session_20251103_215444_bc65c52a', 'timestamp': '2025-11-03T21:54:45.183186', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20251103_215444_bc65c52a_converted.wav'}}
+2025-11-03 21:54:45,197 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:04.000]   This is test number one for medication. We're seeing if this works, session_id: session_20251103_215444_bc65c52a, session_type: medication
+2025-11-03 21:54:45,197 - routes.audio - INFO - Calling AI summarization for session session_20251103_215444_bc65c52a
+2025-11-03 21:54:45,203 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:54:49,182 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:54:49,183 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "The transcript appears to be a test recording rather than an actual medication administration session. The content suggests technical testing with brief, unclear references to '
+2025-11-03 21:54:49,183 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "The transcript appears to be a test recording rather than an actual medication administration session. The content suggests technical testing with brief, unclear references to medicati'
+2025-11-03 21:54:49,183 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "The transcript appears to be a test recording rather than an actual medication administration session. The content suggests technical testing with brief, unclear references to medicati'
+2025-11-03 21:54:49,183 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:54:49,183 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:54:49,183 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'The transcript appears to be a test recording rather than an actual medication administration session. The content suggests technical testing with brief, unclear references to medication.'
+2025-11-03 21:54:49,183 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'The transcript appears to be a test recording rather than an actual medication administration session. The content suggests technical testing with brief, unclear references to medication.'
+2025-11-03 21:54:49,183 - routes.audio - INFO - AI summarization successful for session session_20251103_215444_bc65c52a
+2025-11-03 21:54:49,183 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215444_bc65c52a
+2025-11-03 21:54:49,183 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'The transcript appears to be a test recording rather than an actual medication administration session. The content suggests technical testing with brief, unclear references to medication.'
+2025-11-03 21:54:49,184 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215444_bc65c52a
+INFO:     127.0.0.1:50951 - "POST /api/process-session HTTP/1.1" 200 OK
+2025-11-03 21:55:17,445 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:256000]
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:67895]
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:55:17,446 - python_multipart.multipart - DEBUG - Calling on_header_field with data[67939:67958]
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_header_value with data[67960:67990]
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_part_data with data[67994:68004]
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_header_field with data[68048:68067]
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_header_value with data[68069:68097]
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_part_data with data[68101:68116]
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 21:55:17,447 - python_multipart.multipart - DEBUG - Calling on_end with no data
+Received file: recording.wav, Content-Type: audio/webm, Size: 323753
+2025-11-03 21:55:17,448 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_215517_a7ce1e03.wav
+2025-11-03 21:55:17,644 - routes.audio - INFO - Successfully converted recordings/session_20251103_215517_a7ce1e03.wav to recordings/session_20251103_215517_a7ce1e03_converted.wav
+2025-11-03 21:55:17,644 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_215517_a7ce1e03_converted.wav
+2025-11-03 21:55:18,345 - routes.audio - INFO - Transcription completed. Length: 209, Content: 
+[00:00:00.000 --> 00:00:08.000]   All right, I mean, this is pretty good. It works. AI analysis and
+INFO:     127.0.0.1:50984 - "POST /api/record-audio HTTP/1.1" 200 OK
+2025-11-03 21:55:18,363 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:08.000]   All right, I mean, this is pretty good. It works. AI analysis and whisper and all this stuff.\n[00:00:08.000 --> 00:00:12.240]   Just some fentanyl. You know what I'm saying?", 'metadata': {'session_id': 'session_20251103_215517_a7ce1e03', 'timestamp': '2025-11-03T21:55:18.346466', 'patient_id': 'default_patient', 'session_type': 'medication', 'audio_file': 'session_20251103_215517_a7ce1e03_converted.wav'}}
+2025-11-03 21:55:18,363 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:08.000]   All right, I mean, this is pretty good. It works. AI analysis and , session_id: session_20251103_215517_a7ce1e03, session_type: medication
+2025-11-03 21:55:18,363 - routes.audio - INFO - Calling AI summarization for session session_20251103_215517_a7ce1e03
+2025-11-03 21:55:18,366 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 21:55:21,346 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 21:55:21,347 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "The transcript contains only a brief, unclear fragment where the speaker mentions fentanyl in a conversational manner, but provides no actual medication administration details '
+2025-11-03 21:55:21,347 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "The transcript contains only a brief, unclear fragment where the speaker mentions fentanyl in a conversational manner, but provides no actual medication administration details or patie'
+2025-11-03 21:55:21,348 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "The transcript contains only a brief, unclear fragment where the speaker mentions fentanyl in a conversational manner, but provides no actual medication administration details or patie'
+2025-11-03 21:55:21,348 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 21:55:21,348 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 21:55:21,348 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'The transcript contains only a brief, unclear fragment where the speaker mentions fentanyl in a conversational manner, but provides no actual medication administration details or patient interaction.'
+2025-11-03 21:55:21,348 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'The transcript contains only a brief, unclear fragment where the speaker mentions fentanyl in a conversational manner, but provides no actual medication administration details or patient interaction.'
+2025-11-03 21:55:21,348 - routes.audio - INFO - AI summarization successful for session session_20251103_215517_a7ce1e03
+2025-11-03 21:55:21,348 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_215517_a7ce1e03
+2025-11-03 21:55:21,348 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'The transcript contains only a brief, unclear fragment where the speaker mentions fentanyl in a conversational manner, but provides no actual medication administration details or patient interaction.'
+2025-11-03 21:55:21,350 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_215517_a7ce1e03
+INFO:     127.0.0.1:50984 - "POST /api/process-session HTTP/1.1" 200 OK

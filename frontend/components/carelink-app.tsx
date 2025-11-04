@@ -389,10 +389,10 @@ export default function Component() {
       // Start real audio recording
       await audioRecording.startRecording()
 
-      // Auto-stop recording after 10 seconds (configurable)
+      // Auto-stop recording after 30 seconds (configurable)
       const recordingTimeout = setTimeout(async () => {
         await handleStopRecording()
-      }, 10000) // 10 second recording
+      }, 30000) // 30 second recording
 
       // Clear timeout if user manually stops recording
       audioRecording.state.isRecording && setTimeout(() => {
@@ -422,15 +422,19 @@ export default function Component() {
       const recordingResponse = await api.recordAudio(audioBlob, selectedSessionType)
       setRecordingResult(recordingResponse)
 
-      // Process the session with AI analysis
-      const analysisResponse = await api.processSession({
+      // Navigate to summary immediately (don't wait for AI)
+      setCurrentScreen("session-summary")
+
+      // Start AI analysis in background (non-blocking)
+      api.processSession({
         transcript: recordingResponse.transcript,
         metadata: recordingResponse.metadata
+      }).then(analysisResponse => {
+        setAnalysisResult(analysisResponse)
+      }).catch(error => {
+        console.error('AI analysis failed:', error)
+        // Keep going with just transcript, analysis will show as "processing failed"
       })
-      setAnalysisResult(analysisResponse)
-
-      // Navigate to summary
-      setCurrentScreen("session-summary")
 
     } catch (error) {
       console.error('Failed to process recording:', error)
