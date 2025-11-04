@@ -896,3 +896,8 @@ INFO:     127.0.0.1:51857 - "POST /api/record-audio HTTP/1.1" 200 OK
 2025-11-03 22:12:07,018 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement with professional topics f'
 2025-11-03 22:12:07,019 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_221202_7e4308eb
 INFO:     127.0.0.1:51857 - "POST /api/process-session HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [41268]
+INFO:     Stopping reloader process [81067]

@@ -50,3 +50,4 @@
  GET /app 200 in 127ms
  GET /app 200 in 141ms
  GET / 200 in 56ms
+[?25h
