@@ -156,22 +156,66 @@ async def process_session(request_data: dict):
             logger.error(f"Missing required data - transcript: {bool(transcript)}, session_id: {bool(session_id)}")
             raise HTTPException(status_code=400, detail="Missing transcript or session_id")
 
-        # For now, create a simple mock analysis result
-        # TODO: Integrate with the full 3-stage chain later
-        analysis_result = {
-            "summary": f"This {session_type} session was successfully recorded and transcribed. The transcript contains: {transcript[:100]}{'...' if len(transcript) > 100 else ''}",
-            "tags": [session_type, "transcribed", "needs_full_analysis"],
-            "mood_label": "Neutral",
-            "agitation_score": 2,
-            "suggestions": [
-                "Review the full transcript for important details",
-                "Consider the context and patient's current state",
-                "Follow up as needed based on session content"
-            ]
-        }
+        # Call summarization logic directly (no HTTP self-call)
+        from routes.summarize import load_prompt_template, call_ollama_api, parse_gemma_response
+
+        try:
+            logger.info(f"Calling AI summarization for session {session_id}")
+
+            # Load appropriate prompt template
+            prompt_template = load_prompt_template(session_type)
+
+            # Format prompt with transcript
+            formatted_prompt = prompt_template.format(transcript=transcript)
+
+            # Call Ollama API directly
+            gemma_response = call_ollama_api(formatted_prompt)
+
+            # Parse response
+            parsed_response = parse_gemma_response(gemma_response)
+            logger.info(f"DEBUG - parsed_response type: {type(parsed_response)}")
+            logger.info(f"DEBUG - parsed_response keys: {parsed_response.keys() if isinstance(parsed_response, dict) else 'NOT A DICT'}")
+
+            # Clean up summary text - remove any remaining markdown artifacts
+            raw_summary = parsed_response.get("summary", "")
+            logger.info(f"DEBUG - raw_summary type: {type(raw_summary)}, first 200 chars: {repr(raw_summary[:200])}")
+
+            # Remove markdown code fence artifacts like ```json or ```
+            clean_summary = raw_summary
+            if clean_summary.startswith('```'):
+                # Remove everything from the first ``` to the first newline
+                lines = clean_summary.split('\n', 1)
+                if len(lines) > 1:
+                    clean_summary = lines[1]
+            # Remove any remaining ``` at the end
+            clean_summary = clean_summary.replace('```', '').strip()
+            logger.info(f"DEBUG - clean_summary after cleanup, first 200 chars: {repr(clean_summary[:200])}")
+
+            analysis_result = {
+                "summary": clean_summary,
+                "mood_label": parsed_response.get("mood_label", "unknown"),
+                "agitation_score": parsed_response.get("agitation_score", 0),
+                "repetition_json": parsed_response.get("repetition_json", []),
+                "tags": [session_type, "transcribed", "ai_analyzed"]
+            }
+            logger.info(f"AI summarization successful for session {session_id}")
+
+        except Exception as ai_error:
+            logger.error(f"AI summarization error: {str(ai_error)}")
+            # Fallback to basic analysis if AI fails
+            analysis_result = {
+                "summary": f"Transcription completed but AI analysis failed: {str(ai_error)}",
+                "tags": [session_type, "transcribed", "ai_failed"],
+                "mood_label": "unknown",
+                "agitation_score": 0,
+                "suggestions": ["AI analysis unavailable - review transcript manually"]
+            }
 
         # Store analysis results in database (use INSERT OR REPLACE to handle duplicates)
         logger.info(f"Attempting to store analysis for session_id: {session_id}")
+        summary_to_store = analysis_result.get("summary", "")
+        logger.info(f"DEBUG - About to store summary in DB, first 200 chars: {repr(summary_to_store[:200])}")
+
         with database.db_cursor() as cursor:
             try:
                 cursor.execute(
@@ -180,7 +224,7 @@ async def process_session(request_data: dict):
                        VALUES (?, ?, ?, ?, ?, ?)""",
                     (
                         session_id,
-                        analysis_result.get("summary", ""),
+                        summary_to_store,
                         analysis_result.get("mood_label", ""),
                         analysis_result.get("agitation_score", 0),
                         json.dumps(analysis_result.get("suggestions", [])),

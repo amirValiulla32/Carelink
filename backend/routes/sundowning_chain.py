@@ -39,11 +39,11 @@ def call_ollama_api(prompt: str) -> dict:
         response = requests.post(
             "http://localhost:11434/api/generate",
             json={
-                "model": "gemma3n:latest",
+                "model": "deepseek-v3.1:671b-cloud",
                 "prompt": prompt,
                 "stream": False
             },
-            timeout=60
+            timeout=180
         )
 
         if response.status_code != 200:

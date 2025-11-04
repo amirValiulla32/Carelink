@@ -48,11 +48,11 @@ def call_ollama_api(prompt: str) -> dict:
         response = requests.post(
             "http://localhost:11434/api/generate",
             json={
-                "model": "gemma3n:latest",
+                "model": "deepseek-v3.1:671b-cloud",
                 "prompt": prompt,
                 "stream": False
             },
-            timeout=60
+            timeout=180
         )
 
         if response.status_code != 200:
@@ -78,35 +78,67 @@ def call_ollama_api(prompt: str) -> dict:
 
 def parse_gemma_response(response_text: str) -> dict:
     """Parse Gemma's JSON response and extract structured data."""
-    try:
-        # Try to find JSON in the response
-        start_idx = response_text.find('{')
-        end_idx = response_text.rfind('}') + 1
+    import logging
+    logger = logging.getLogger(__name__)
 
-        if start_idx == -1 or end_idx == 0:
-            raise ValueError("No JSON found in response")
+    # Strip markdown code fences if present
+    text = response_text.strip()
+    logger.info(f"Raw response (first 200 chars): {repr(text[:200])}")
 
-        json_str = response_text[start_idx:end_idx]
-        parsed = json.loads(json_str)
+    if text.startswith('```'):
+        # Remove opening fence (```json or ```)
+        lines = text.split('\n')
+        lines = lines[1:]  # Skip first line with ```
+        # Remove closing fence
+        if lines and lines[-1].strip() == '```':
+            lines = lines[:-1]
+        text = '\n'.join(lines)
+        logger.info(f"After fence removal (first 200 chars): {repr(text[:200])}")
 
-        # Validate required fields
-        required_fields = ["summary", "repetition_json",
-                           "agitation_score", "mood_label"]
-        for field in required_fields:
-            if field not in parsed:
-                raise ValueError(f"Missing required field: {field}")
+    # Try to find JSON in the response
+    start_idx = text.find('{')
+    end_idx = text.rfind('}') + 1
 
-        return parsed
-
-    except (json.JSONDecodeError, ValueError) as e:
-        # Fallback parsing if JSON is malformed
+    if start_idx == -1 or end_idx == 0:
+        logger.error("No JSON found in response")
+        logger.error(f"Failed to parse text: {repr(response_text[:500])}")
         return {
-            "summary": response_text[:200] + "..." if len(response_text) > 200 else response_text,
+            "summary": "Unable to parse AI response - no JSON found",
             "repetition_json": [],
             "agitation_score": 0.0,
             "mood_label": "unknown",
             "suggestions": "Unable to parse detailed analysis"
         }
+
+    json_str = text[start_idx:end_idx]
+    logger.info(f"Extracted JSON (first 200 chars): {repr(json_str[:200])}")
+
+    try:
+        parsed = json.loads(json_str)
+    except json.JSONDecodeError as e:
+        logger.error(f"JSON decode failed: {str(e)}")
+        logger.error(f"Failed to parse text: {repr(response_text[:500])}")
+        return {
+            "summary": "Unable to parse AI response - invalid JSON",
+            "repetition_json": [],
+            "agitation_score": 0.0,
+            "mood_label": "unknown",
+            "suggestions": "Unable to parse detailed analysis"
+        }
+
+    # Extract summary field, fill in missing fields with defaults
+    if "summary" not in parsed:
+        logger.warning("Missing 'summary' field in parsed response")
+
+    result = {
+        "summary": parsed.get("summary", "No summary provided"),
+        "repetition_json": parsed.get("repetition_json", []),
+        "agitation_score": parsed.get("agitation_score", 0.0),
+        "mood_label": parsed.get("mood_label", "unknown"),
+        "suggestions": parsed.get("suggestions", "")
+    }
+
+    return result
 
 
 @router.post("/summarize", response_model=SummarizeResponse)

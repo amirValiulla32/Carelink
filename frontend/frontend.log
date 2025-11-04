@@ -1,0 +1,52 @@
+
+> my-v0-project@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.2.4
+   - Local:        http://localhost:3000
+   - Network:      http://10.67.86.131:3000
+
+ ✓ Starting...
+ ✓ Ready in 1254ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1173ms (780 modules)
+ GET / 200 in 1454ms
+ ✓ Compiled in 362ms (345 modules)
+ GET / 200 in 89ms
+ ✓ Compiled /app in 308ms (871 modules)
+ GET /app 200 in 352ms
+ GET / 200 in 68ms
+ GET / 200 in 63ms
+ GET /app 200 in 18ms
+ GET / 200 in 722ms
+ ✓ Compiled in 1445ms (885 modules)
+ ✓ Compiled in 649ms (885 modules)
+ ✓ Compiled in 662ms (885 modules)
+ ✓ Compiled in 633ms (885 modules)
+ ✓ Compiled in 720ms (885 modules)
+ ✓ Compiled in 573ms (885 modules)
+ GET /app 200 in 156ms
+ GET /app 200 in 10ms
+ GET /app 200 in 8ms
+ GET /app 200 in 21ms
+ GET /app 200 in 6ms
+ GET /app 200 in 6ms
+ GET / 200 in 62ms
+ GET /app 200 in 11ms
+ ✓ Compiled in 858ms (885 modules)
+ GET /app 200 in 108ms
+ ✓ Compiled in 802ms (885 modules)
+ GET /app 200 in 70ms
+ GET / 200 in 86ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 678ms (888 modules)
+ GET /login 200 in 719ms
+ GET / 200 in 39ms
+ GET /app 200 in 47ms
+ GET /app 200 in 343ms
+ GET / 200 in 19ms
+ GET /app 200 in 6ms
+ ✓ Compiled in 1137ms (892 modules)
+ GET /app 200 in 127ms
+ GET /app 200 in 141ms
+ GET / 200 in 56ms
