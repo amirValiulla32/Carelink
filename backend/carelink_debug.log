@@ -1759,3 +1759,51 @@ AssertionError: Model not downloaded!
 2025-11-03 22:08:34,530 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_220829_c50a0117
 2025-11-03 22:08:34,530 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'A brief technical test recording where the speaker discusses testing transcription software and potential future expansions to AWS and Stripe integration.'
 2025-11-03 22:08:34,530 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_220829_c50a0117
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 22:12:02,197 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 22:12:02,198 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:255448]
+2025-11-03 22:12:02,201 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:256000]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:10982]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_header_field with data[11026:11045]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_header_value with data[11047:11077]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_data with data[11081:11089]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_header_field with data[11133:11152]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_header_value with data[11154:11182]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_data with data[11186:11201]
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-03 22:12:02,202 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-11-03 22:12:02,205 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251103_221202_7e4308eb.wav
+2025-11-03 22:12:02,489 - routes.audio - INFO - Successfully converted recordings/session_20251103_221202_7e4308eb.wav to recordings/session_20251103_221202_7e4308eb_converted.wav
+2025-11-03 22:12:02,490 - routes.audio - INFO - Starting transcription for file: recordings/session_20251103_221202_7e4308eb_converted.wav
+2025-11-03 22:12:03,294 - routes.audio - INFO - Transcription completed. Length: 229, Content: 
+[00:00:00.000 --> 00:00:09.120]   You know, I'm ready. I'm gonna expand Kerilink into a AWS Enterpr
+2025-11-03 22:12:03,314 - routes.audio - INFO - Processing session with data: {'transcript': "[00:00:00.000 --> 00:00:09.120]   You know, I'm ready. I'm gonna expand Kerilink into a AWS Enterprise user, you\n[00:00:09.120 --> 00:00:19.240]   know, my Mac, you know, my kind of company card, you know, Kerilink to the moon.", 'metadata': {'session_id': 'session_20251103_221202_7e4308eb', 'timestamp': '2025-11-03T22:12:03.294469', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251103_221202_7e4308eb_converted.wav'}}
+2025-11-03 22:12:03,314 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:09.120]   You know, I'm ready. I'm gonna expand Kerilink into a AWS Enterpri, session_id: session_20251103_221202_7e4308eb, session_type: freeform
+2025-11-03 22:12:03,314 - routes.audio - INFO - Calling AI summarization for session session_20251103_221202_7e4308eb
+2025-11-03 22:12:03,321 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-03 22:12:07,017 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 200 None
+2025-11-03 22:12:07,017 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement wi'
+2025-11-03 22:12:07,018 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement with profe'
+2025-11-03 22:12:07,018 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement with profe'
+2025-11-03 22:12:07,018 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-03 22:12:07,018 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-03 22:12:07,018 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement with professional topics f'
+2025-11-03 22:12:07,018 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement with professional topics f'
+2025-11-03 22:12:07,018 - routes.audio - INFO - AI summarization successful for session session_20251103_221202_7e4308eb
+2025-11-03 22:12:07,018 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_221202_7e4308eb
+2025-11-03 22:12:07,018 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement with professional topics f'
+2025-11-03 22:12:07,019 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_221202_7e4308eb

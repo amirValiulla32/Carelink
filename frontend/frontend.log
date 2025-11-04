@@ -46,3 +46,7 @@
  GET /app 200 in 343ms
  GET / 200 in 19ms
  GET /app 200 in 6ms
+ ✓ Compiled in 1137ms (892 modules)
+ GET /app 200 in 127ms
+ GET /app 200 in 141ms
+ GET / 200 in 56ms

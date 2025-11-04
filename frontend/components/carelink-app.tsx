@@ -955,12 +955,18 @@ export default function Component() {
                            backgroundColor: processingStage === "transcribing" ? "#E8F5E8" :
                                           ["analyzing", "complete"].includes(processingStage) ? "#F0F9FF" : "#F8F9FA"
                          }}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        processingStage === "transcribing" ? "animate-spin" : ""
-                      }`} style={{
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center relative" style={{
                         backgroundColor: ["analyzing", "complete"].includes(processingStage) ? "#B8D4B8" : "#D4C5F9"
                       }}>
-                        {["analyzing", "complete"].includes(processingStage) ? "✓" : "1"}
+                        {["analyzing", "complete"].includes(processingStage) ? (
+                          <span className="text-white font-bold">✓</span>
+                        ) : processingStage === "transcribing" ? (
+                          <div className="flex gap-0.5">
+                            <div className="w-1 h-1 rounded-full bg-white animate-pulse" style={{ animationDelay: "0ms" }}></div>
+                            <div className="w-1 h-1 rounded-full bg-white animate-pulse" style={{ animationDelay: "150ms" }}></div>
+                            <div className="w-1 h-1 rounded-full bg-white animate-pulse" style={{ animationDelay: "300ms" }}></div>
+                          </div>
+                        ) : null}
                       </div>
                       <div className="text-left flex-1">
                         <p className="text-sm font-medium text-gray-800">Transcribing Audio</p>
@@ -974,16 +980,28 @@ export default function Component() {
                            backgroundColor: processingStage === "analyzing" ? "#FFE8D6" :
                                           processingStage === "complete" ? "#F0F9FF" : "#F8F9FA"
                          }}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        processingStage === "analyzing" ? "animate-pulse" : ""
-                      }`} style={{
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center relative" style={{
                         backgroundColor: processingStage === "complete" ? "#B8D4B8" :
                                        processingStage === "analyzing" ? "#FFD4B3" : "#E5E7EB"
                       }}>
-                        {processingStage === "complete" ? "✓" : "2"}
+                        {processingStage === "complete" ? (
+                          <span className="text-white font-bold">✓</span>
+                        ) : processingStage === "analyzing" ? (
+                          <div className="relative w-4 h-4">
+                            <div className="absolute inset-0 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
+                          </div>
+                        ) : processingStage === "transcribing" ? (
+                          <div className="flex gap-0.5 opacity-40">
+                            <div className="w-1 h-1 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "0ms", animationDuration: "2s" }}></div>
+                            <div className="w-1 h-1 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "400ms", animationDuration: "2s" }}></div>
+                            <div className="w-1 h-1 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "800ms", animationDuration: "2s" }}></div>
+                          </div>
+                        ) : null}
                       </div>
                       <div className="text-left flex-1">
-                        <p className="text-sm font-medium text-gray-800">AI Analysis</p>
+                        <p className={`text-sm font-medium ${processingStage === "transcribing" ? "text-gray-400" : "text-gray-800"}`}>
+                          AI Analysis
+                        </p>
                         <p className="text-xs text-gray-500">Understanding context and mood</p>
                       </div>
                     </div>
@@ -991,15 +1009,23 @@ export default function Component() {
                     {/* Step 3: Complete */}
                     <div className="flex items-center gap-3 p-4 rounded-xl transition-all duration-300"
                          style={{ backgroundColor: processingStage === "complete" ? "#E8F5E8" : "#F8F9FA" }}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        processingStage === "complete" ? "animate-bounce" : ""
-                      }`} style={{
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center relative" style={{
                         backgroundColor: processingStage === "complete" ? "#B8D4B8" : "#E5E7EB"
                       }}>
-                        {processingStage === "complete" ? "✓" : "3"}
+                        {processingStage === "complete" ? (
+                          <span className="text-white font-bold animate-bounce">✓</span>
+                        ) : ["transcribing", "analyzing"].includes(processingStage) ? (
+                          <div className="flex gap-0.5 opacity-30">
+                            <div className="w-1 h-1 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "0ms", animationDuration: "3s" }}></div>
+                            <div className="w-1 h-1 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "600ms", animationDuration: "3s" }}></div>
+                            <div className="w-1 h-1 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "1200ms", animationDuration: "3s" }}></div>
+                          </div>
+                        ) : null}
                       </div>
                       <div className="text-left flex-1">
-                        <p className="text-sm font-medium text-gray-800">Ready to View</p>
+                        <p className={`text-sm font-medium ${["transcribing", "analyzing"].includes(processingStage) ? "text-gray-400" : "text-gray-800"}`}>
+                          Ready to View
+                        </p>
                         <p className="text-xs text-gray-500">Your memory is prepared</p>
                       </div>
                     </div>
