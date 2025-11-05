@@ -1807,3 +1807,52 @@ AssertionError: Model not downloaded!
 2025-11-03 22:12:07,018 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251103_221202_7e4308eb
 2025-11-03 22:12:07,018 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'Brief, work-focused conversation where the patient expresses enthusiasm about expanding their company (Kerilink) using AWS and mentions company resources, showing engagement with professional topics f'
 2025-11-03 22:12:07,019 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251103_221202_7e4308eb
+2025-11-05 10:50:54,164 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-05 10:50:54,177 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2025-11-05 10:50:54,178 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:112]
+2025-11-05 10:50:54,178 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-05 10:50:54,178 - python_multipart.multipart - DEBUG - Calling on_header_field with data[114:126]
+2025-11-05 10:50:54,178 - python_multipart.multipart - DEBUG - Calling on_header_value with data[128:138]
+2025-11-05 10:50:54,178 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-05 10:50:54,178 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-05 10:50:54,181 - python_multipart.multipart - DEBUG - Calling on_part_data with data[142:255448]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:8991]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_header_field with data[9035:9054]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_header_value with data[9056:9086]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_data with data[9090:9098]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_header_field with data[9142:9161]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_header_value with data[9163:9191]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_data with data[9195:9210]
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-11-05 10:50:54,184 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-11-05 10:50:54,203 - routes.audio - INFO - Converting WebM to WAV format for file: recordings/session_20251105_105054_cead7da2.wav
+2025-11-05 10:50:55,252 - routes.audio - INFO - Successfully converted recordings/session_20251105_105054_cead7da2.wav to recordings/session_20251105_105054_cead7da2_converted.wav
+2025-11-05 10:50:55,252 - routes.audio - INFO - Starting transcription for file: recordings/session_20251105_105054_cead7da2_converted.wav
+2025-11-05 10:50:56,161 - routes.audio - INFO - Transcription completed. Length: 121, Content: 
+[00:00:00.000 --> 00:00:04.000]   Hello, hello, hello, hello.
+[00:00:04.000 --> 00:00:10.000]   Nea
+2025-11-05 10:50:56,301 - routes.audio - INFO - Processing session with data: {'transcript': '[00:00:00.000 --> 00:00:04.000]   Hello, hello, hello, hello.\n[00:00:04.000 --> 00:00:10.000]   Nearly set, e-mailions.', 'metadata': {'session_id': 'session_20251105_105054_cead7da2', 'timestamp': '2025-11-05T10:50:56.162377', 'patient_id': 'default_patient', 'session_type': 'freeform', 'audio_file': 'session_20251105_105054_cead7da2_converted.wav'}}
+2025-11-05 10:50:56,301 - routes.audio - INFO - Extracted - transcript: [00:00:00.000 --> 00:00:04.000]   Hello, hello, hello, hello.
+[00:00:04.000 --> 00:00:10.000]   Near, session_id: session_20251105_105054_cead7da2, session_type: freeform
+2025-11-05 10:50:56,305 - routes.audio - INFO - Calling AI summarization for session session_20251105_105054_cead7da2
+2025-11-05 10:50:56,565 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-11-05 10:51:47,446 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2025-11-05 10:51:47,456 - routes.summarize - INFO - Raw response (first 200 chars): '```json\n{\n  "summary": "Extremely brief interaction with only greetings and a single unclear phrase. Insufficient data for meaningful analysis of cognitive status or conversation themes.",\n  "tone": "'
+2025-11-05 10:51:47,456 - routes.summarize - INFO - After fence removal (first 200 chars): '{\n  "summary": "Extremely brief interaction with only greetings and a single unclear phrase. Insufficient data for meaningful analysis of cognitive status or conversation themes.",\n  "tone": "neutral"'
+2025-11-05 10:51:47,456 - routes.summarize - INFO - Extracted JSON (first 200 chars): '{\n  "summary": "Extremely brief interaction with only greetings and a single unclear phrase. Insufficient data for meaningful analysis of cognitive status or conversation themes.",\n  "tone": "neutral"'
+2025-11-05 10:51:47,456 - routes.audio - INFO - DEBUG - parsed_response type: <class 'dict'>
+2025-11-05 10:51:47,457 - routes.audio - INFO - DEBUG - parsed_response keys: dict_keys(['summary', 'repetition_json', 'agitation_score', 'mood_label', 'suggestions'])
+2025-11-05 10:51:47,457 - routes.audio - INFO - DEBUG - raw_summary type: <class 'str'>, first 200 chars: 'Extremely brief interaction with only greetings and a single unclear phrase. Insufficient data for meaningful analysis of cognitive status or conversation themes.'
+2025-11-05 10:51:47,457 - routes.audio - INFO - DEBUG - clean_summary after cleanup, first 200 chars: 'Extremely brief interaction with only greetings and a single unclear phrase. Insufficient data for meaningful analysis of cognitive status or conversation themes.'
+2025-11-05 10:51:47,457 - routes.audio - INFO - AI summarization successful for session session_20251105_105054_cead7da2
+2025-11-05 10:51:47,457 - routes.audio - INFO - Attempting to store analysis for session_id: session_20251105_105054_cead7da2
+2025-11-05 10:51:47,457 - routes.audio - INFO - DEBUG - About to store summary in DB, first 200 chars: 'Extremely brief interaction with only greetings and a single unclear phrase. Insufficient data for meaningful analysis of cognitive status or conversation themes.'
+2025-11-05 10:51:47,464 - routes.audio - INFO - Successfully stored analysis for session_id: session_20251105_105054_cead7da2
