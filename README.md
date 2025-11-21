@@ -19,12 +19,10 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
 - [Development](#development)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -52,7 +50,7 @@ Carelink is a privacy-first, offline-capable application designed to assist care
 ### Core Functionality
 - **Audio Recording & Transcription**: Record caregiver-patient interactions with real-time speech-to-text conversion using whisper.cpp
 - **Session Management**: Track different session types (Medication, Conversation, Meals, Activities, Sundowning)
-- **AI-Powered Analysis**: Automatic summarization and sentiment analysis using local LLM (Gemma 3n via Ollama)
+- **AI-Powered Analysis**: Automatic summarization and sentiment analysis using local LLM (Deepseek v3.1 via Ollama)
 - **Timeline View**: Visual timeline of all sessions with filtering and search capabilities
 - **Mood & Agitation Tracking**: Monitor emotional states and behavioral patterns over time
 
@@ -94,74 +92,8 @@ Carelink is a privacy-first, offline-capable application designed to assist care
 
 ### AI & ML
 - **whisper.cpp (base.en model)**: Offline speech-to-text transcription
-- **Gemma 3n**: Local language model for text analysis and summarization
+- **Deepseek v3.1**: Local language model for text analysis and summarization
 - **Ollama Runtime**: Manages local AI model execution
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        Frontend Layer                        │
-│  (Next.js 15 + React 19 + TypeScript + Tailwind CSS)       │
-│  - Audio Recording Interface                                 │
-│  - Real-time Transcription Display                          │
-│  - Session Timeline & Analytics                             │
-└──────────────────┬──────────────────────────────────────────┘
-                   │ REST API (HTTP)
-┌──────────────────▼──────────────────────────────────────────┐
-│                       API Gateway                            │
-│                  (FastAPI + CORS Middleware)                 │
-│  - Request Routing                                           │
-│  - Global Exception Handling                                 │
-│  - Health Check Endpoints                                    │
-└───────┬────────────────┬────────────────┬────────────────────┘
-        │                │                │
-        ▼                ▼                ▼
-┌───────────────┐ ┌──────────────┐ ┌────────────────────┐
-│   Session     │ │  Transcribe  │ │    Summarize       │
-│   Routes      │ │   Routes     │ │     Routes         │
-│  - Create     │ │  - Audio     │ │  - AI Analysis     │
-│  - Update     │ │    Upload    │ │  - Prompt Chains   │
-│  - Delete     │ │  - Process   │ │  - Mood Detection  │
-│  - List       │ │              │ │                    │
-└───────┬───────┘ └──────┬───────┘ └────────┬───────────┘
-        │                │                   │
-        └────────────────┼───────────────────┘
-                         │
-        ┌────────────────▼────────────────────────────┐
-        │          Processing Layer                    │
-        │                                              │
-        │  ┌──────────────┐      ┌─────────────────┐ │
-        │  │   FFmpeg     │      │   whisper.cpp   │ │
-        │  │  (WebM→WAV)  │─────▶│  (WAV→Text)     │ │
-        │  └──────────────┘      └─────────────────┘ │
-        │                                              │
-        │  ┌──────────────────────────────────────┐  │
-        │  │         Ollama (Gemma 3n)            │  │
-        │  │      (Text→Analysis/Summary)         │  │
-        │  └──────────────────────────────────────┘  │
-        └─────────────────┬───────────────────────────┘
-                          │
-        ┌─────────────────▼────────────────────────┐
-        │           Data Layer                      │
-        │                                           │
-        │  ┌─────────────────────────────────────┐ │
-        │  │      SQLite Database                │ │
-        │  │  - sessions                         │ │
-        │  │  - transcripts                      │ │
-        │  │  - summaries                        │ │
-        │  │  - audio_chunks                     │ │
-        │  └─────────────────────────────────────┘ │
-        │                                           │
-        │  ┌─────────────────────────────────────┐ │
-        │  │    File Storage (Local)             │ │
-        │  │  - Audio Recordings (.wav)          │ │
-        │  │  - Session Metadata                 │ │
-        │  └─────────────────────────────────────┘ │
-        └───────────────────────────────────────────┘
-```
 
 ---
 
@@ -172,7 +104,7 @@ Before installing Carelink, ensure you have the following installed:
 ### Required
 - **Python 3.8+**: [Download](https://www.python.org/downloads/)
 - **Node.js 18+**: [Download](https://nodejs.org/)
-- **pnpm**: Package manager (`npm install -g pnpm`)
+- **npm or pnpm**: Package manager (npm comes with Node.js, or install pnpm: `npm install -g pnpm`)
 - **CMake**: For building whisper.cpp ([Download](https://cmake.org/download/))
 - **FFmpeg**: Audio processing ([Download](https://ffmpeg.org/download.html))
 - **Ollama**: Local LLM runtime ([Download](https://ollama.ai/download))
@@ -229,8 +161,8 @@ cd ..
 ```bash
 # Install Ollama from https://ollama.ai/download
 
-# Pull the Gemma 3n model
-ollama pull gemma3n:latest
+# Pull the Deepseek v3.1 model
+ollama pull deepseek-v3.1:671b-cloud
 
 # Start Ollama service (keep running in separate terminal)
 ollama serve
@@ -240,7 +172,9 @@ ollama serve
 ```bash
 cd frontend
 
-# Install dependencies
+# Install dependencies (use npm or pnpm)
+npm install
+# or
 pnpm install
 
 cd ..
@@ -286,6 +220,8 @@ The backend API will be available at `http://localhost:8000`
 ```bash
 # In a new terminal
 cd frontend
+npm run dev
+# or
 pnpm run dev
 ```
 
@@ -373,128 +309,6 @@ Carelink/
 
 ---
 
-## 🔌 API Documentation
-
-### Base URL
-```
-http://localhost:8000
-```
-
-### Core Endpoints
-
-#### Health Check
-```http
-GET /health
-```
-Returns API and database health status.
-
-#### Sessions
-
-**Create Session**
-```http
-POST /api/sessions
-Content-Type: application/json
-
-{
-  "session_type": "Medication",
-  "notes": "Morning medication administration"
-}
-```
-
-**List Sessions**
-```http
-GET /api/sessions?limit=50&offset=0
-```
-
-**Get Session by ID**
-```http
-GET /api/sessions/{session_id}
-```
-
-**Update Session**
-```http
-PUT /api/sessions/{session_id}
-Content-Type: application/json
-
-{
-  "notes": "Updated session notes",
-  "end_ts": "2024-10-12T15:30:00"
-}
-```
-
-**Delete Session**
-```http
-DELETE /api/sessions/{session_id}
-```
-
-#### Audio & Transcription
-
-**Upload Audio**
-```http
-POST /api/record-audio
-Content-Type: multipart/form-data
-
-{
-  "audio": <audio_file.webm>,
-  "session_id": "uuid",
-  "session_type": "Medication"
-}
-```
-
-**Transcribe Audio**
-```http
-POST /api/transcribe
-Content-Type: multipart/form-data
-
-{
-  "audio": <audio_file.wav>,
-  "session_id": "uuid"
-}
-```
-
-#### AI Analysis
-
-**Generate Summary**
-```http
-POST /api/summarize
-Content-Type: application/json
-
-{
-  "session_id": "uuid",
-  "transcript_text": "Full transcript text here"
-}
-```
-
-**Medication Analysis**
-```http
-POST /api/medication-chain
-Content-Type: application/json
-
-{
-  "transcript_text": "Transcript of medication session"
-}
-```
-
-### Response Format
-
-**Success Response (200)**
-```json
-{
-  "status": "success",
-  "data": { ... }
-}
-```
-
-**Error Response (4xx/5xx)**
-```json
-{
-  "detail": "Error description",
-  "traceback": "Full error trace (development only)"
-}
-```
-
----
-
 ## 💻 Development
 
 ### Running Tests
@@ -508,6 +322,8 @@ pytest
 **Frontend Tests**
 ```bash
 cd frontend
+npm test
+# or
 pnpm test
 ```
 
@@ -523,14 +339,14 @@ pnpm test
 2. **Frontend Development**
    ```bash
    cd frontend
-   pnpm run dev
+   npm run dev  # or: pnpm run dev
    ```
 
 3. **Type Checking**
    ```bash
    # Frontend TypeScript
    cd frontend
-   pnpm run build  # Checks types during build
+   npm run build  # or: pnpm run build (checks types during build)
    ```
 
 ### Code Style
@@ -560,47 +376,6 @@ SELECT * FROM sessions LIMIT 10;
 cd backend
 python -c "import database; database.init_database()"
 ```
-
----
-
-## 🗺️ Roadmap
-
-### Current Version: 1.0 (MVP)
-- ✅ Offline audio recording
-- ✅ Local speech-to-text transcription
-- ✅ AI-powered session analysis
-- ✅ Session timeline and history
-- ✅ Multiple session types
-
-### Phase 1: Foundation (Q1 2025)
-- [ ] User authentication (Google OAuth, Email/Password)
-- [ ] Multi-tenant architecture
-- [ ] Progressive Web App (PWA) capabilities
-- [ ] Offline sync and data persistence
-- [ ] Enhanced security and encryption
-
-### Phase 2: Intelligence & Mobile (Q2-Q3 2025)
-- [ ] Real-time transcription with WebSockets
-- [ ] Advanced sentiment and emotion analysis
-- [ ] React Native mobile apps (iOS/Android)
-- [ ] Push notifications for caregivers
-- [ ] Healthcare provider dashboard
-
-### Phase 3: Integration (Q4 2025 - Q1 2026)
-- [ ] FHIR compliance
-- [ ] EHR system integration (Epic, Cerner)
-- [ ] Microservices architecture
-- [ ] Cloud deployment options
-- [ ] Advanced analytics platform
-
-### Phase 4: Enterprise (2026+)
-- [ ] Predictive analytics and ML models
-- [ ] HIPAA compliance certification
-- [ ] Enterprise reporting and dashboards
-- [ ] IoT device integration
-- [ ] Multi-language support
-
-See [FUTURE_EXPANSION_ROADMAP.md](FUTURE_EXPANSION_ROADMAP.md) for detailed technical roadmap.
 
 ---
 
