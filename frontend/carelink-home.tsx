@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -7,48 +8,48 @@ export default function Component() {
   const sessions = [
     {
       id: 1,
-      type: "Medication",
+      type: "Speech Sample",
       time: "9:00 AM",
-      description: "Morning medications administered",
-      icon: Pill,
-      color: "bg-blue-50 text-blue-600",
-      status: "completed",
+      description: "Patient narrated morning routine for articulation review",
+      icon: Heart,
+      color: "bg-emerald-50 text-emerald-600",
+      status: "reviewed",
     },
     {
       id: 2,
-      type: "Wellness Check",
+      type: "Medication Response Log",
       time: "11:30 AM",
-      description: "Vital signs and mood assessment",
-      icon: Heart,
-      color: "bg-green-50 text-green-600",
-      status: "completed",
+      description: "Audio note captured 45 minutes after dose; tremor reduced",
+      icon: Pill,
+      color: "bg-blue-50 text-blue-600",
+      status: "reviewed",
     },
     {
       id: 3,
-      type: "Meal Support",
+      type: "Motor Check-in",
       time: "12:45 PM",
-      description: "Lunch assistance and hydration",
+      description: "Timed finger tap video uploaded for bradykinesia tracking",
       icon: Coffee,
       color: "bg-amber-50 text-amber-600",
-      status: "completed",
+      status: "reviewed",
     },
     {
       id: 4,
-      type: "Confusion Episode",
+      type: "Cognitive Drift Alert",
       time: "6:45 PM",
-      description: "Brief disorientation, resolved with comfort",
+      description: "Patient report flagged for word-finding difficulty",
       icon: Brain,
-      color: "bg-purple-50 text-purple-600",
-      status: "noted",
+      color: "bg-rose-50 text-rose-600",
+      status: "flagged",
     },
     {
       id: 5,
-      type: "Evening Routine",
+      type: "Sleep Quality Check",
       time: "8:30 PM",
-      description: "Bedtime preparation and medications",
+      description: "Evening reflection mentions vivid dreams and restlessness",
       icon: Moon,
       color: "bg-indigo-50 text-indigo-600",
-      status: "completed",
+      status: "reviewed",
     },
   ]
 
@@ -59,8 +60,8 @@ export default function Component() {
         <div className="mb-12">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-4xl font-light text-slate-800 mb-2">Carelink</h1>
-              <p className="text-slate-500 text-lg font-light">Today's Care Journey</p>
+              <h1 className="text-4xl font-light text-slate-800 mb-2">Carelink Neurology</h1>
+              <p className="text-slate-500 text-lg font-light">Patient Interaction Review Console</p>
             </div>
             <div className="text-right">
               <p className="text-sm text-slate-400 font-medium">{new Date().toLocaleDateString('en-US', { weekday: 'long' })}</p>
@@ -70,11 +71,14 @@ export default function Component() {
 
           {/* Start Session Button */}
           <Button
+            asChild
             size="lg"
             className="w-full h-16 text-lg font-medium bg-blue-500 hover:bg-blue-600 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200"
           >
-            <Plus className="w-6 h-6 mr-3" />
-            Start New Session
+            <Link href="/remote-monitoring/review">
+              <Plus className="w-6 h-6 mr-3" />
+              Review Patient Interactions
+            </Link>
           </Button>
         </div>
 
@@ -110,12 +114,12 @@ export default function Component() {
                         <Badge
                           variant="secondary"
                           className={`${
-                            session.status === "completed"
-                              ? "bg-green-100 text-green-700 hover:bg-green-100"
-                              : "bg-amber-100 text-amber-700 hover:bg-amber-100"
+                            session.status === "flagged"
+                              ? "bg-rose-100 text-rose-700 hover:bg-rose-100"
+                              : "bg-emerald-100 text-emerald-700 hover:bg-emerald-100"
                           } rounded-full px-3 py-1 text-xs font-medium border-0`}
                         >
-                          {session.status === "completed" ? "Completed" : "Noted"}
+                          {session.status === "flagged" ? "Needs Review" : "Reviewed"}
                         </Badge>
                       </div>
                       <p className="text-slate-600 leading-relaxed">{session.description}</p>
@@ -130,22 +134,22 @@ export default function Component() {
         {/* Summary Card */}
         <Card className="mt-12 border-0 shadow-sm rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50">
           <CardContent className="p-8 text-center">
-            <h3 className="text-xl font-medium text-slate-800 mb-2">Today's Summary</h3>
+            <h3 className="text-xl font-medium text-slate-800 mb-2">Symptom Timeline Summary</h3>
             <p className="text-slate-600 leading-relaxed mb-4">
-              5 sessions completed with attentive care and documentation
+              5 patient recordings ingested for longitudinal symptom tracking
             </p>
             <div className="flex justify-center gap-8 text-sm">
               <div className="text-center">
                 <div className="text-2xl font-light text-blue-600 mb-1">5</div>
-                <div className="text-slate-500">Sessions</div>
+                <div className="text-slate-500">Recordings</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-light text-green-600 mb-1">4</div>
-                <div className="text-slate-500">Completed</div>
+                <div className="text-slate-500">Reviewed</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-light text-amber-600 mb-1">1</div>
-                <div className="text-slate-500">Noted</div>
+                <div className="text-2xl font-light text-rose-600 mb-1">1</div>
+                <div className="text-slate-500">Needs Review</div>
               </div>
             </div>
           </CardContent>
